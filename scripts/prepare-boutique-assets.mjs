@@ -1,0 +1,11 @@
+import sharp from 'sharp';import fs from 'node:fs';
+for(const [source,target,width] of [['asado-editorial.png','asado-promover',1800],['cooler-editorial.png','cooler-promover',1800],['taller-enhanced.jpg','workshop-refined',1588],['taller-detail-enhanced.jpg','workshop-detail-refined',766]]){const image=sharp('materials/'+source);await image.resize({width,withoutEnlargement:true}).webp({quality:91,effort:6}).toFile(`assets/${target}.webp`);const m=await sharp(`assets/${target}.webp`).metadata();console.log(target,m.width,m.height)}
+let html=fs.readFileSync('index.html','utf8');
+html=html.replaceAll('assets/workshop.webp','assets/workshop-refined.webp').replaceAll('assets/workshop-wide.webp','assets/workshop-refined.webp').replaceAll('assets/workshop-detail.webp','assets/workshop-detail-refined.webp');
+html=html.replace(/(<figure class="process-photo"><img)[^>]*>/,'$1 src="assets/workshop-detail-refined.webp" width="766" height="692" loading="lazy" alt="Detalle de confección compartido por Promover">');
+html=html.replace('src="assets/promociones.webp" width="1200" height="800" loading="lazy" alt="','src="assets/cooler-promover.webp" width="1800" height="1208" loading="lazy" alt="');
+html=html.replace('src="assets/hogar.webp" width="1200" height="800" loading="lazy" alt="','src="assets/asado-promover.webp" width="1800" height="1208" loading="lazy" alt="');
+html=html.replace(/(<img[^>]*src="assets\/cooler-promover.webp"[^>]*alt=")[^"]*/,'$1Composición de estudio basada en la conservadora naranja publicada por Promover');
+html=html.replace(/(<img[^>]*src="assets\/asado-promover.webp"[^>]*alt=")[^"]*/,'$1Composición de estudio basada en el set de asado publicado por Promover');
+html=html.replace('<p class="reference-note">Imágenes ilustrativas. Materiales, personalización y disponibilidad se definen en cada propuesta.</p>','<p class="reference-note">Imágenes ilustrativas. Materiales, personalización y disponibilidad se definen en cada propuesta.</p><a id="dialog-source" class="dialog-source" href="https://www.instagram.com/promover.marketing/" target="_blank" rel="noopener" hidden><img src="assets/instagram.svg" width="16" height="16" alt="">Ver producto en Instagram<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>');
+fs.writeFileSync('index.html',html);

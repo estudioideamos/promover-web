@@ -8,6 +8,8 @@ const categories = {
  sustentable:{title:'Sustentable',image:'hero',description:'Una categoría para explorar alternativas de materiales y objetos reutilizables según las necesidades de tu proyecto. Consultanos por las opciones disponibles y sus características.',tags:['Reutilizables','Selección de materiales','Propuestas a medida']}
 };
 for(const key of ['boligrafos','promociones','hogar','sustentable']) categories[key].image=key;
+categories.promociones.image='cooler-promover';categories.promociones.sourceUrl='https://www.instagram.com/promover.marketing/p/DesRZU7D8re/';
+categories.hogar.image='asado-promover';categories.hogar.sourceUrl='https://www.instagram.com/promover.marketing/p/De0FTsCDjHV/';
 const menu=document.querySelector('.menu-toggle'); const nav=document.querySelector('#navigation');
 function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');nav.classList.remove('open');document.body.classList.remove('menu-open');}
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');nav.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);if(open)nav.querySelector('a').focus()});
@@ -19,6 +21,7 @@ addEventListener('scroll',()=>{if(!headerFrame)headerFrame=requestAnimationFrame
 const dialog=document.querySelector('#category-dialog');let lastCategory;
 document.querySelectorAll('[data-category]').forEach(button=>button.addEventListener('click',()=>{
  const c=categories[button.dataset.category];lastCategory=button;
+ const source=document.querySelector('#dialog-source');source.hidden=!c.sourceUrl;if(c.sourceUrl)source.href=c.sourceUrl;
  document.querySelector('#dialog-title').textContent=c.title;document.querySelector('#dialog-description').textContent=c.description;
  const img=document.querySelector('#dialog-image');img.src=`assets/${c.image}.webp`;img.alt=`Imagen ilustrativa de ${c.title}`;
  document.querySelector('#dialog-tags').replaceChildren(...c.tags.map(t=>{const s=document.createElement('span');s.textContent=t;return s}));
