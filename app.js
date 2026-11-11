@@ -9,6 +9,7 @@ const categories = {
 };
 for(const key of ['boligrafos','promociones','hogar','sustentable']) categories[key].image=key;
 categories.promociones.image='cooler-promover';categories.promociones.sourceUrl='https://www.instagram.com/promover.marketing/p/DesRZU7D8re/';
+categories.promociones.title='Conservadoras y accesorios';
 categories.hogar.image='asado-promover';categories.hogar.sourceUrl='https://www.instagram.com/promover.marketing/p/De0FTsCDjHV/';
 const menu=document.querySelector('.menu-toggle'); const nav=document.querySelector('#navigation');
 function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');nav.classList.remove('open');document.body.classList.remove('menu-open');}
@@ -42,7 +43,7 @@ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 function syncMotionPreference(){if(reducedMotion.matches){logoWindow.tabIndex=0}else{logoWindow.removeAttribute('tabindex')}}
 syncMotionPreference();reducedMotion.addEventListener('change',syncMotionPreference);
 const floatingContact=document.querySelector('.floating-contact');
-function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();const footer=document.querySelector('.footer-editorial').getBoundingClientRect();const show=hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0)&&footer.top>=innerHeight;floatingContact.classList.toggle('shown',show);floatingContact.inert=!show;}
+function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();const footer=document.querySelector('.footer-editorial').getBoundingClientRect();const universe=document.querySelector('#universo').getBoundingClientRect();const show=hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0)&&footer.top>=innerHeight;floatingContact.classList.toggle('shown',show);floatingContact.classList.toggle('compact',universe.top<innerHeight&&universe.bottom>100);floatingContact.inert=!show;}
 addEventListener('scroll',updateFloatingContact,{passive:true});addEventListener('resize',updateFloatingContact);updateFloatingContact();
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});
