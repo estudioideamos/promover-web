@@ -1,0 +1,2 @@
+import {chromium} from '@playwright/test';
+const b=await chromium.launch({channel:'chrome',headless:true});const p=await b.newPage({viewport:{width:390,height:900},reducedMotion:'reduce'});await p.goto('http://127.0.0.1:4173/');await p.evaluate(()=>document.fonts.ready);await p.addStyleTag({content:'.header,.skip{visibility:hidden!important}'});await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';scrollTo(0,document.documentElement.scrollHeight)});await p.locator('.footer-editorial').screenshot({path:'qa/footer-mobile-closed.png'});await b.close();
