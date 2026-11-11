@@ -15,3 +15,5 @@ Contenido institucional y contactos basados en el correo de Julieta Jodar. Logo 
 La demo no incorpora comercio electrónico ni integra cuentas de Instagram. El proceso de fabricación abre el reel original. GitHub Actions publica `dist/` en GitHub Pages al actualizar `main`.
 
 El logo horizontal y la palabra PROMOVER del footer reutilizan los ocho contornos de letras del SVG original de Promover, sin sustituirlos por una tipografía aproximada. Los íconos de Instagram y WhatsApp proceden de Simple Icons (`simple-icons/simple-icons`, archivos `icons/instagram.svg` y `icons/whatsapp.svg`); sus trazados se conservan intactos. El logo del crédito de Ideamos proviene de `https://ideamos.com.ar/logos/ideamos-light.webp`. La firma completa enlaza a `https://ideamos.com.ar/`.
+
+La composición editorial usa una portada clara, siete categorías fotográficas en grilla asimétrica, dos detalles de fabricación extraídos de la referencia proporcionada, un marquee de marca naranja y una sección de clientes de alto contraste. El footer conserva su composición compacta. Los nuevos encuadres reutilizan materiales existentes, sin generaciones adicionales.
