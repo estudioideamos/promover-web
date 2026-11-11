@@ -1,15 +1,15 @@
 # Promover — demo institucional
 
-Sitio estático editorial en español para Promover Marketing. Fabricación propia desde 1996, siete categorías, fichas accesibles, WhatsApp contextual, historia, misión, valores, logos originales de clientes y contacto.
+Sitio estático editorial en español para Promover Marketing. Fabricación propia desde 1996, siete categorías fotográficas, fichas accesibles, WhatsApp contextual, historia, misión, valores y contacto. Portada de alto contraste, composiciones de producto y fabricación, y carrusel continuo con los 23 logos originales de clientes.
 
 ## Desarrollo
 
 `npm ci`, `npm run build`, `npm run dev` (http://127.0.0.1:4173).
 
-`npm test` verifica vistas de escritorio y móvil, categorías, navegación y enlaces de contacto con Playwright (requiere Chrome instalado).
+`npm test` verifica vistas de escritorio y móvil, categorías, navegación y enlaces de contacto con Playwright (requiere Chrome instalado). `node scripts/qa-motion.mjs` comprueba la visibilidad del presupuesto en 1366 × 606 px y el movimiento, loop, pausa y reanudación del carrusel. Respeta la preferencia de movimiento reducido; en ese caso, las marcas se recorren con scroll horizontal.
 
 ## Contenido y material
 
-Contenido institucional y contactos basados en el correo de Julieta Jodar. Logo vectorial y logos de clientes tomados de la carpeta compartida del proyecto. Foto del proceso extraída de la referencia visual suministrada. Las cuatro imágenes de producto fueron generadas con Magnific y se presentan como ilustrativas, no como catálogo real. Costo: 260 créditos. No se publican credenciales ni el correo completo.
+Contenido institucional y contactos basados en el correo de Julieta Jodar. Logo vectorial y logos de clientes tomados de la carpeta compartida del proyecto. Foto del proceso extraída de la referencia visual suministrada. Ocho imágenes de producto generadas con Magnific se presentan como ilustrativas, no como catálogo real. Costo acumulado: 520 créditos (260 iniciales y 260 del rediseño). No se publican credenciales ni el correo completo.
 
 La demo no incorpora comercio electrónico ni integra cuentas de Instagram. El proceso de fabricación abre el reel original. GitHub Actions publica `dist/` en GitHub Pages al actualizar `main`.

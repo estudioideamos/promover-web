@@ -7,6 +7,7 @@ const categories = {
  hogar:{title:'Hogar y tiempo libre',image:'objetos',description:'Tu marca también puede formar parte de los momentos de disfrute. Buscamos objetos útiles y cercanos para acompañar la vida cotidiana de quienes los reciben.',tags:['Vida cotidiana','Tiempo libre','Regalos']},
  sustentable:{title:'Sustentable',image:'hero',description:'Una categoría para explorar alternativas de materiales y objetos reutilizables según las necesidades de tu proyecto. Consultanos por las opciones disponibles y sus características.',tags:['Reutilizables','Selección de materiales','Propuestas a medida']}
 };
+for(const key of ['boligrafos','promociones','hogar','sustentable']) categories[key].image=key;
 const menu=document.querySelector('.menu-toggle'); const nav=document.querySelector('#navigation');
 function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');nav.classList.remove('open');}
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');nav.classList.toggle('open',open)});
@@ -26,9 +27,19 @@ dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoun
 dialog.addEventListener('close',()=>{document.body.classList.remove('locked');lastCategory?.focus({preventScroll:true})});
 document.querySelector('#year').textContent=new Date().getFullYear();
 const logos=document.querySelector('#client-logos');
-const clientNames=['Cliente de Promover'];
-for(let i=1;i<=23;i++){const box=document.createElement('div');box.className='client-logo';const img=document.createElement('img');img.src=`assets/clients/${i}.webp`;img.alt=`Logo de empresa que confió en Promover (${i})`;img.loading='lazy';img.width=160;img.height=70;box.append(img);logos.append(box)}
+const clientNames=['GEPSA','Conarco','YPF','Raffo','La Serenísima','Tyco','Heinz','Carbap','Klaukol','IPCVA','ITBA','BIC Graphic','Banco Provincia','Adecco','Giber','GSK','Unión','Taragüi','Mañanita','La Merced','Sanofi','Las Marías','Monasterio Tattersall'];
+const group=document.createElement('div');group.className='logo-group';
+clientNames.forEach((name,index)=>{const box=document.createElement('div');box.className='client-logo';const img=document.createElement('img');img.src=`assets/clients/${index+1}.webp`;img.alt=name;img.width=160;img.height=70;box.append(img);group.append(box)});
+const clone=group.cloneNode(true);clone.setAttribute('aria-hidden','true');clone.querySelectorAll('img').forEach(img=>img.alt='');logos.append(group,clone);
+const logoWindow=document.querySelector('.logo-window');const pauseButton=document.querySelector('.logo-pause');
+pauseButton.addEventListener('click',()=>{const paused=logoWindow.classList.toggle('paused');pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.querySelector('.pause-label').textContent=paused?'Reanudar movimiento':'Pausar movimiento';pauseButton.querySelector('.pause-symbol').textContent=paused?'▶':'Ⅱ'});
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+function syncMotionPreference(){pauseButton.disabled=reducedMotion.matches;if(reducedMotion.matches){pauseButton.querySelector('.pause-label').textContent='Movimiento reducido';logoWindow.tabIndex=0}else{pauseButton.querySelector('.pause-label').textContent=logoWindow.classList.contains('paused')?'Reanudar movimiento':'Pausar movimiento';logoWindow.removeAttribute('tabindex')}}
+syncMotionPreference();reducedMotion.addEventListener('change',syncMotionPreference);
+const floatingContact=document.querySelector('.floating-contact');
+function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();floatingContact.classList.toggle('shown',hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0));}
+addEventListener('scroll',updateFloatingContact,{passive:true});addEventListener('resize',updateFloatingContact);updateFloatingContact();
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});
- document.querySelectorAll('.section-heading,.about-main,.values,.clients-heading,.process-steps,.contact-main').forEach(el=>{el.classList.add('reveal-ready');observer.observe(el)});
+ document.querySelectorAll('.section-heading,.category,.manufacture-copy,.clients-heading,.process-steps article,.contact-main').forEach((el,index)=>{if(el.classList.contains('category'))el.style.setProperty('--delay',`${index%3*70}ms`);el.classList.add('reveal-ready');observer.observe(el)});
 }

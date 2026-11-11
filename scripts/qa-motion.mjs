@@ -1,0 +1,14 @@
+import {chromium} from '@playwright/test';
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1366,height:606},reducedMotion:'no-preference'});await page.goto('http://127.0.0.1:4173',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
+const cta=await page.locator('.hero-actions .button').boundingBox();if(cta.y+cta.height>606)throw Error('Hero CTA below fold '+JSON.stringify(cta));
+if(await page.locator('.floating-contact').evaluate(el=>getComputedStyle(el).opacity!=='0'))throw Error('Floating CTA competes with hero');
+await page.locator('#confianza').scrollIntoViewIfNeeded();await page.mouse.move(0,0);
+const state=()=>page.locator('.logo-track').evaluate(el=>({time:el.getAnimations()[0].currentTime,transform:getComputedStyle(el).transform,width:el.getBoundingClientRect().width,groups:[...el.children].map(g=>g.getBoundingClientRect().width)}));
+const before=await state();await page.waitForTimeout(200);const after=await state();if(before.transform===after.transform)throw Error('Logos not moving');if(Math.abs(after.groups[0]-after.groups[1])>1||Math.abs(after.width-after.groups[0]*2)>1)throw Error('Loop geometry mismatch');
+await page.locator('.logo-window').hover();const hover=await state();await page.waitForTimeout(200);if(Math.abs((await state()).time-hover.time)>2)throw Error('Hover pause failed');
+await page.locator('.logo-pause').click();await page.mouse.move(0,0);const paused=await state();await page.waitForTimeout(200);if(Math.abs((await state()).time-paused.time)>2)throw Error('Pause button failed');await page.locator('.logo-pause').click();await page.mouse.move(0,0);const resumed=await state();await page.waitForTimeout(200);if((await state()).time<=resumed.time)throw Error('Resume failed');
+await page.locator('#confianza').screenshot({path:'qa/logos.png'});
+await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(400);await page.screenshot({path:'qa/hero-1366.png'});
+await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('.logo-pause').disabled);
+console.log('PASS: hero CTA visible at 1366×606; logo movement, exact loop geometry, hover pause, manual pause/resume, reduced motion.');await browser.close();
