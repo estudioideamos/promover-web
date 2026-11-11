@@ -3,6 +3,7 @@ const browser=await chromium.launch({channel:'chrome',headless:true});
 for(const [width,height] of [[1366,606],[390,844],[320,740]]){
 const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce'});await page.goto('http://127.0.0.1:4173',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
 await page.locator('.footer-editorial').scrollIntoViewIfNeeded();await page.waitForTimeout(100);
+await page.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,document.documentElement.scrollHeight)});await page.waitForTimeout(150);
 const floating=await page.locator('.floating-contact').evaluate(el=>({opacity:getComputedStyle(el).opacity,inert:el.inert}));if(floating.opacity!=='0'||!floating.inert)throw Error('Floating CTA at footer');
 const footer=await page.locator('.footer-editorial').boundingBox();if(width===1366&&footer.height>606)throw Error('Footer too tall '+footer.height);
 const email=await page.locator('.footer-mail').evaluate(el=>({height:el.getBoundingClientRect().height,line:parseFloat(getComputedStyle(el).lineHeight)}));if(width>1000&&email.height>email.line*1.5)throw Error('Desktop email wraps');
