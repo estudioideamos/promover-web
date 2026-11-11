@@ -1,0 +1,28 @@
+.process.section{padding-top:58px;padding-bottom:55px;background:var(--white)}
+.process .section-kicker{font-size:10px;color:#68735b;letter-spacing:.02em}
+.process-layout{grid-template-columns:.9fr 1.2fr;gap:12%;align-items:start;margin-top:30px}
+.process-intro h2{font-size:clamp(45px,4.05vw,62px);line-height:1.04;letter-spacing:-.05em;font-weight:600}
+.process-intro>p{font-size:13px;color:#68735b;line-height:1.75;max-width:290px;margin-top:17px}
+.process-photo{margin:20px 0 0;max-width:350px}
+.process-photo img{width:100%;height:132px;object-fit:cover;object-position:center 30%;filter:saturate(.6)}
+.process-photo figcaption{font-size:10px;color:#68735b;line-height:1.6;margin-top:7px}
+.process-intro .process-cta{margin-top:20px;font-size:12px;gap:10px;padding-bottom:8px;border-color:#a1ab94;color:var(--ink)}
+.process-cta>.brand-icon{width:18px;height:18px}.process-cta>.arrow-icon{width:19px;height:19px;margin-left:20px;color:#c56b29}
+.process-steps{margin-top:0}
+.process-steps article{position:relative;display:grid;grid-template-columns:50px 1fr;gap:25px;padding:23px 0 25px;border-top:0;border-bottom:1px solid #d4d9c9;isolation:isolate}
+.process-steps article:first-child{padding-top:8px}
+.process-steps article:last-child{padding-bottom:10px;border-bottom:0}
+.process-steps article:not(:last-child):before{content:'';position:absolute;left:24.5px;top:50px;bottom:-50px;width:1px;background:#c8cfbc;z-index:-1}
+.process-steps article:first-child:before{background:linear-gradient(var(--orange),#c8cfbc 80%)}
+.process-steps article>div{grid-column:2;grid-row:1;padding-right:4px}
+.process-steps .process-node{grid-column:1;grid-row:1;width:50px;height:50px;border:1px solid #bfc9b1;border-radius:50%;display:grid;place-items:center;background:var(--white);position:relative;z-index:1;color:#697e52;transition:border-color .3s,background .3s,color .3s}
+.process-node svg{width:25px;height:25px;stroke-width:1.5;color:inherit}
+.process-steps article:first-child .process-node{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.process-steps article:hover{background:none}.process-steps article:hover .process-node{border-color:#b96c36;color:var(--ink)}
+.process .step-label{font-size:11px;letter-spacing:.025em;text-transform:none;color:#69765b;line-height:1.5;font-weight:500}
+.process-steps h3{font-size:28px;line-height:1.2;letter-spacing:-.04em;font-weight:600;margin:7px 0 11px}
+.process-steps p{font-size:14px;line-height:1.8;color:#68735b;max-width:430px}
+@media(min-width:761px) and (max-width:1100px){.process-layout{gap:8%;grid-template-columns:.9fr 1.2fr}.process-intro h2{font-size:48px}.process-steps article{gap:19px}.process-steps h3{font-size:25px}.process-steps p{font-size:13px}.process-photo{max-width:280px}}
+@media(max-width:760px){.process.section{padding-top:42px;padding-bottom:40px}.process .section-kicker{font-size:9px}.process-layout{display:block;margin-top:27px}.process-intro h2{font-size:clamp(44px,11.5vw,60px);line-height:1.05}.process-intro>p{font-size:13px;max-width:295px;margin-top:18px}.process-photo{max-width:none;margin-top:22px}.process-photo img{height:160px;object-position:center 32%}.process-photo figcaption{font-size:10px;margin-top:7px}.process-intro .process-cta{font-size:12px;margin-top:18px}.process-steps{margin-top:30px}.process-steps article{grid-template-columns:42px 1fr;gap:17px;padding:22px 0 24px}.process-steps article:first-child{padding-top:4px}.process-steps .process-node{width:42px;height:42px}.process-node svg{width:22px;height:22px}.process-steps article:not(:last-child):before{left:20.5px;top:42px;bottom:-42px}.process .step-label{font-size:10px}.process-steps h3{font-size:25px;margin:6px 0 10px}.process-steps p{font-size:13px;line-height:1.8}.process-steps article>div{padding-right:0}}
+@media(max-width:360px){.process-steps article{gap:14px;grid-template-columns:38px 1fr}.process-steps .process-node{width:38px;height:38px}.process-steps article:not(:last-child):before{left:18.5px;top:38px;bottom:-38px}.process-steps h3{font-size:23px}.process-steps p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.process-steps .process-node{transition:none}}
