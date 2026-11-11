@@ -39,7 +39,7 @@ syncMotionPreference();reducedMotion.addEventListener('change',syncMotionPrefere
 const homeMarquee=document.querySelector('.home-marquee');const marqueeToggle=document.querySelector('.marquee-toggle');
 marqueeToggle.addEventListener('click',()=>{const paused=homeMarquee.classList.toggle('paused');marqueeToggle.setAttribute('aria-pressed',String(paused));marqueeToggle.setAttribute('aria-label',paused?'Reanudar franja animada':'Pausar franja animada');marqueeToggle.firstElementChild.textContent=paused?'▶':'Ⅱ'});
 const floatingContact=document.querySelector('.floating-contact');
-function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();floatingContact.classList.toggle('shown',hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0));}
+function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();const footer=document.querySelector('.footer-editorial').getBoundingClientRect();const show=hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0)&&footer.top>=innerHeight;floatingContact.classList.toggle('shown',show);floatingContact.inert=!show;}
 addEventListener('scroll',updateFloatingContact,{passive:true});addEventListener('resize',updateFloatingContact);updateFloatingContact();
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});
