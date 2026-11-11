@@ -17,6 +17,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: .cache/images
+          key: ${{ runner.os }}-promover-images-v1-${{ hashFiles('assets/*.webp') }}
+          restore-keys: ${{ runner.os }}-promover-images-v1-
       - run: node scripts/build.mjs
       - uses: actions/upload-pages-artifact@v3
         with:

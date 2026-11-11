@@ -1,4 +1,196 @@
 /* A quieter, deliberate editorial composition for the client collection. */
-.clients.section{padding-top:58px;padding-bottom:30px}.clients-heading{grid-template-columns:minmax(0,1.55fr) minmax(0,.8fr);gap:11%;align-items:end;margin-bottom:34px}.clients h2{font-size:clamp(46px,4.55vw,70px);letter-spacing:-.055em;line-height:1.055;margin-top:25px}.clients h2 em{font-weight:400}.clients-aside{padding:0 0 5px;max-width:270px;justify-self:end}.clients-aside p{font-size:13px;line-height:1.85;color:#c6d0ba}.clients>.brand-watermark{width:255px;height:190px;right:6%;top:19px;opacity:.025}.clients:before{width:126px;height:126px;left:56%;right:auto;top:35px;bottom:auto;border-color:#e4c89f;opacity:.08}.clients:after{width:100px;height:100px;left:calc(56% + 13px);right:auto;top:48px;bottom:auto;border-color:#e4c89f;opacity:.045}.clients .logo-window{padding:22px 0;margin-top:0;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}.clients .client-logo{height:108px}.client-signoff{padding:20px 0 0;justify-content:flex-start}.client-signoff>a{font-size:12px;font-weight:500;letter-spacing:-.01em;gap:16px;min-height:40px}.client-signoff>a .arrow-icon{width:18px;height:18px}.client-signoff>a:hover{color:#f7b17b}.clients .section-kicker>span:first-child{box-shadow:0 3px 16px -8px #f5873b55}
-@media(min-width:761px) and (max-width:1100px){.clients-heading{gap:7%;grid-template-columns:1.3fr .8fr}.clients h2{font-size:48px}.clients-aside{max-width:220px}.clients:before{left:55%;width:94px;height:94px;top:30px}.clients:after{left:calc(55% + 11px);width:72px;height:72px;top:41px}.clients>.brand-watermark{width:210px;height:160px}}
-@media(max-width:760px){.clients.section{padding-top:40px;padding-bottom:24px}.clients-heading{display:block;margin-bottom:25px}.clients h2{font-size:clamp(38px,10.5vw,57px);line-height:1.08;margin-top:24px}.clients-aside{padding:0;margin-top:23px;max-width:280px}.clients-aside p{font-size:13px;line-height:1.8}.clients>.brand-watermark{width:170px;height:135px;top:22px;right:4%;opacity:.022}.clients:before{left:auto;right:7%;top:auto;bottom:18px;width:75px;height:75px;opacity:.065}.clients:after{left:auto;right:calc(7% + 10px);top:auto;bottom:28px;width:55px;height:55px;opacity:.035}.clients .logo-window{padding:14px 0;margin-top:0}.clients .client-logo{height:95px}.client-signoff{padding-top:14px;padding-right:65px}.client-signoff>a{font-size:11px;gap:12px;max-width:250px;line-height:1.6;min-height:44px}.clients .logo-window{mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}}
+.clients.section {
+  padding-top: 58px;
+  padding-bottom: 30px;
+}
+.clients-heading {
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.8fr);
+  gap: 11%;
+  align-items: end;
+  margin-bottom: 34px;
+}
+.clients h2 {
+  font-size: clamp(46px, 4.55vw, 70px);
+  letter-spacing: -0.055em;
+  line-height: 1.055;
+  margin-top: 25px;
+}
+.clients h2 em {
+  font-weight: 400;
+}
+.clients-aside {
+  padding: 0 0 5px;
+  max-width: 270px;
+  justify-self: end;
+}
+.clients-aside p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #c6d0ba;
+}
+.clients > .brand-watermark {
+  width: 255px;
+  height: 190px;
+  right: 6%;
+  top: 19px;
+  opacity: 0.025;
+}
+.clients:before {
+  width: 126px;
+  height: 126px;
+  left: 56%;
+  right: auto;
+  top: 35px;
+  bottom: auto;
+  border-color: #e4c89f;
+  opacity: 0.08;
+}
+.clients:after {
+  width: 100px;
+  height: 100px;
+  left: calc(56% + 13px);
+  right: auto;
+  top: 48px;
+  bottom: auto;
+  border-color: #e4c89f;
+  opacity: 0.045;
+}
+.clients .logo-window {
+  padding: 22px 0;
+  margin-top: 0;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+.clients .client-logo {
+  height: 108px;
+}
+.client-signoff {
+  padding: 20px 0 0;
+  justify-content: flex-start;
+}
+.client-signoff > a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  gap: 16px;
+  min-height: 40px;
+}
+.client-signoff > a .arrow-icon {
+  width: 18px;
+  height: 18px;
+}
+.client-signoff > a:hover {
+  color: #f7b17b;
+}
+.clients .section-kicker > span:first-child {
+  box-shadow: 0 3px 16px -8px #f5873b55;
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .clients-heading {
+    gap: 7%;
+    grid-template-columns: 1.3fr 0.8fr;
+  }
+  .clients h2 {
+    font-size: 48px;
+  }
+  .clients-aside {
+    max-width: 220px;
+  }
+  .clients:before {
+    left: 55%;
+    width: 94px;
+    height: 94px;
+    top: 30px;
+  }
+  .clients:after {
+    left: calc(55% + 11px);
+    width: 72px;
+    height: 72px;
+    top: 41px;
+  }
+  .clients > .brand-watermark {
+    width: 210px;
+    height: 160px;
+  }
+}
+@media (max-width: 760px) {
+  .clients.section {
+    padding-top: 40px;
+    padding-bottom: 24px;
+  }
+  .clients-heading {
+    display: block;
+    margin-bottom: 25px;
+  }
+  .clients h2 {
+    font-size: clamp(38px, 10.5vw, 57px);
+    line-height: 1.08;
+    margin-top: 24px;
+  }
+  .clients-aside {
+    padding: 0;
+    margin-top: 23px;
+    max-width: 280px;
+  }
+  .clients-aside p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .clients > .brand-watermark {
+    width: 170px;
+    height: 135px;
+    top: 22px;
+    right: 4%;
+    opacity: 0.022;
+  }
+  .clients:before {
+    left: auto;
+    right: 7%;
+    top: auto;
+    bottom: 18px;
+    width: 75px;
+    height: 75px;
+    opacity: 0.065;
+  }
+  .clients:after {
+    left: auto;
+    right: calc(7% + 10px);
+    top: auto;
+    bottom: 28px;
+    width: 55px;
+    height: 55px;
+    opacity: 0.035;
+  }
+  .clients .logo-window {
+    padding: 14px 0;
+    margin-top: 0;
+  }
+  .clients .client-logo {
+    height: 95px;
+  }
+  .client-signoff {
+    padding-top: 14px;
+    padding-right: 65px;
+  }
+  .client-signoff > a {
+    font-size: 11px;
+    gap: 12px;
+    max-width: 250px;
+    line-height: 1.6;
+    min-height: 44px;
+  }
+  .clients .logo-window {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+  }
+}

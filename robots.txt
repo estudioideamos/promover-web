@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /promover-web/gracias.html
+
+Sitemap: https://estudioideamos.github.io/promover-web/sitemap.xml

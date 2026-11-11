@@ -1,9 +1,350 @@
 /* A deliberately edited collection: shared baselines, fewer competing devices. */
-.universe .section-heading:after{display:none}.heading-aside{max-width:265px}.category-grid{gap:38px 27px}.category-title{font-weight:500;letter-spacing:-.045em}.category-caption{padding-top:15px}.category-subtitle{line-height:1.65}.category-photo{overflow:hidden}.photo-label{border-radius:2px;letter-spacing:.035em;font-size:9px;padding:8px 10px}.category:not(.special) .category-photo img{filter:none}.category.special .special-image img{filter:saturate(.8) contrast(1.06)}.universe-footer{margin-top:28px}.universe-footer .reference-note{max-width:370px}.film-divider{height:clamp(380px,43vw,660px);margin-top:0;border-top:0}.film-divider:after{background:linear-gradient(0deg,#080f08b3,transparent 32%)}.film-divider figcaption{font-weight:400;letter-spacing:-.025em}.film-divider+.manufacture{border-top:18px solid var(--white)}.manufacture-visual{background:#e8d9c4}.manufacture-visual:before{display:none}.manufacture-photo{box-shadow:none;transform:none}.manufacture-photo img{object-fit:cover;filter:none}.maker-detail{display:none}.photo-coordinate{display:none}.year-card{background:var(--white);padding:14px 18px;left:6%;bottom:26px}.year-card strong{font-size:48px}.year-card>span:first-child{font-size:12px}.year-card>span:last-child{display:none}.manufacture-copy .film-link{border-radius:3px}.process>.brand-watermark{display:none}.process-photo img{object-position:center 40%;filter:none}.hero-copy:before{display:none}.workshop-stamp{display:none}.hero-art-title{font-size:clamp(20px,2vw,29px)}
+.universe .section-heading:after {
+  display: none;
+}
+.heading-aside {
+  max-width: 265px;
+}
+.category-grid {
+  gap: 38px 27px;
+}
+.category-title {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+.category-caption {
+  padding-top: 15px;
+}
+.category-subtitle {
+  line-height: 1.65;
+}
+.category-photo {
+  overflow: hidden;
+}
+.photo-label {
+  border-radius: 2px;
+  letter-spacing: 0.035em;
+  font-size: 9px;
+  padding: 8px 10px;
+}
+.category:not(.special) .category-photo img {
+  filter: none;
+}
+.category.special .special-image img {
+  filter: saturate(0.8) contrast(1.06);
+}
+.universe-footer {
+  margin-top: 28px;
+}
+.universe-footer .reference-note {
+  max-width: 370px;
+}
+.film-divider {
+  height: clamp(380px, 43vw, 660px);
+  margin-top: 0;
+  border-top: 0;
+}
+.film-divider:after {
+  background: linear-gradient(0deg, #080f08b3, transparent 32%);
+}
+.film-divider figcaption {
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.film-divider + .manufacture {
+  border-top: 18px solid var(--white);
+}
+.manufacture-visual {
+  background: #e8d9c4;
+}
+.manufacture-visual:before {
+  display: none;
+}
+.manufacture-photo {
+  box-shadow: none;
+  transform: none;
+}
+.manufacture-photo img {
+  object-fit: cover;
+  filter: none;
+}
+.maker-detail {
+  display: none;
+}
+.photo-coordinate {
+  display: none;
+}
+.year-card {
+  background: var(--white);
+  padding: 14px 18px;
+  left: 6%;
+  bottom: 26px;
+}
+.year-card strong {
+  font-size: 48px;
+}
+.year-card > span:first-child {
+  font-size: 12px;
+}
+.year-card > span:last-child {
+  display: none;
+}
+.manufacture-copy .film-link {
+  border-radius: 3px;
+}
+.process > .brand-watermark {
+  display: none;
+}
+.process-photo img {
+  object-position: center 40%;
+  filter: none;
+}
+.hero-copy:before {
+  display: none;
+}
+.workshop-stamp {
+  display: none;
+}
+.hero-art-title {
+  font-size: clamp(20px, 2vw, 29px);
+}
 /* Labels carry hierarchy; only principal section introductions keep the pill. */
-.hero-copy>.eyebrow{background:none;color:#706e5d;border-radius:0;padding:0;font-size:10px;font-weight:500;letter-spacing:.035em}.hero-copy>.eyebrow .status-dot{display:inline-block;background:var(--orange)}.manufacture .section-kicker>span:first-child{background:none;color:#6f725e;padding:0;border-radius:0;font-size:10px;letter-spacing:.035em;font-weight:500}.contact-top>.section-kicker{background:none;color:var(--ink);padding:0;border-radius:0;font-size:10px;font-weight:500;letter-spacing:.035em}.contact:before{opacity:.1;width:125px;height:90px}
-@media(min-width:1001px){.category-grid .category.feature{grid-column:span 7}.category-grid .category.leather{grid-column:span 5;padding-top:70px}.category.feature .category-photo{height:440px}.category.leather .category-photo{height:370px}.category-grid .category[data-category=boligrafos],.category-grid .category[data-category=promociones],.category-grid .category[data-category=hogar]{grid-column:span 4}.category[data-category=boligrafos] .category-photo,.category[data-category=promociones] .category-photo,.category[data-category=hogar] .category-photo{height:265px}.category-grid .category.sustainable{grid-column:span 4}.category.sustainable .category-photo{height:350px}.category-grid .category.special{grid-column:span 8;min-height:410px;height:410px}.special-title{font-size:clamp(46px,4.7vw,70px)}.manufacture-visual{height:700px;min-height:700px;padding:28px 5% 28px}.manufacture-photo{max-height:none;height:100%}.manufacture-photo img{height:100%}.manufacture-copy{padding-top:55px;padding-bottom:45px}.manufacture h2{font-size:clamp(45px,4.15vw,64px)}}
-@media(min-width:761px) and (max-width:1000px){.category-grid{gap:32px 22px}.category.feature .category-photo{height:380px}.category.leather{padding-top:60px}.category.leather .category-photo{height:320px}.category-photo{height:220px}.category.sustainable .category-photo{height:320px}.category.special{min-height:380px}.manufacture-visual{padding:30px 7% 85px;min-height:650px}.year-card{bottom:25px}.film-divider+.manufacture{border-top-width:14px}}
-@media(max-width:760px){.category-grid{gap:27px 16px}.category.feature .category-photo{height:330px}.category.leather .category-photo{height:290px}.category[data-category=hogar] .category-photo{height:245px}.category[data-category=promociones] .category-photo,.category[data-category=boligrafos] .category-photo{height:190px}.category.sustainable .category-photo{height:290px}.category.special{min-height:330px;padding:25px}.category-title{font-size:21px}.photo-label{font-size:8px;padding:7px 9px}.film-divider+.manufacture{border-top-width:12px}.manufacture-visual{height:480px;min-height:0;padding:20px 6% 20px}.manufacture-photo{height:100%;max-height:none}.manufacture-photo img{height:100%}.year-card{left:6%;bottom:24px;padding:12px 15px}.year-card strong{font-size:44px}.year-card>span:first-child{font-size:11px}.manufacture-copy{padding-top:36px;padding-bottom:36px}.hero-copy>.eyebrow,.manufacture .section-kicker>span:first-child,.contact-top>.section-kicker{font-size:9px}.contact:before{width:55px;height:35px;top:20px;opacity:.12}.universe-footer .reference-note{font-size:10px}.process-photo img{height:175px}.hero-art-title{font-size:25px}}
-.dialog-source{display:inline-flex;align-items:center;gap:8px;font-size:11px;line-height:1.6;margin-top:18px;color:#59654d;min-height:36px}.dialog-source[hidden]{display:none}.dialog-source img{width:16px;height:16px;object-fit:contain}.dialog-source .arrow-icon{width:15px;height:15px}.dialog-inner>img[src*="cooler-promover"],.dialog-inner>img[src*="asado-promover"]{object-fit:contain;background:#eeeee5}
-.process-photo img{object-position:center 84%}
+.hero-copy > .eyebrow {
+  background: none;
+  color: #706e5d;
+  border-radius: 0;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+.hero-copy > .eyebrow .status-dot {
+  display: inline-block;
+  background: var(--orange);
+}
+.manufacture .section-kicker > span:first-child {
+  background: none;
+  color: #6f725e;
+  padding: 0;
+  border-radius: 0;
+  font-size: 10px;
+  letter-spacing: 0.035em;
+  font-weight: 500;
+}
+.contact-top > .section-kicker {
+  background: none;
+  color: var(--ink);
+  padding: 0;
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+.contact:before {
+  opacity: 0.1;
+  width: 125px;
+  height: 90px;
+}
+@media (min-width: 1001px) {
+  .category-grid .category.feature {
+    grid-column: span 7;
+  }
+  .category-grid .category.leather {
+    grid-column: span 5;
+    padding-top: 70px;
+  }
+  .category.feature .category-photo {
+    height: 440px;
+  }
+  .category.leather .category-photo {
+    height: 370px;
+  }
+  .category-grid .category[data-category="boligrafos"],
+  .category-grid .category[data-category="promociones"],
+  .category-grid .category[data-category="hogar"] {
+    grid-column: span 4;
+  }
+  .category[data-category="boligrafos"] .category-photo,
+  .category[data-category="promociones"] .category-photo,
+  .category[data-category="hogar"] .category-photo {
+    height: 265px;
+  }
+  .category-grid .category.sustainable {
+    grid-column: span 4;
+  }
+  .category.sustainable .category-photo {
+    height: 350px;
+  }
+  .category-grid .category.special {
+    grid-column: span 8;
+    min-height: 410px;
+    height: 410px;
+  }
+  .special-title {
+    font-size: clamp(46px, 4.7vw, 70px);
+  }
+  .manufacture-visual {
+    height: 700px;
+    min-height: 700px;
+    padding: 28px 5% 28px;
+  }
+  .manufacture-photo {
+    max-height: none;
+    height: 100%;
+  }
+  .manufacture-photo img {
+    height: 100%;
+  }
+  .manufacture-copy {
+    padding-top: 55px;
+    padding-bottom: 45px;
+  }
+  .manufacture h2 {
+    font-size: clamp(45px, 4.15vw, 64px);
+  }
+}
+@media (min-width: 761px) and (max-width: 1000px) {
+  .category-grid {
+    gap: 32px 22px;
+  }
+  .category.feature .category-photo {
+    height: 380px;
+  }
+  .category.leather {
+    padding-top: 60px;
+  }
+  .category.leather .category-photo {
+    height: 320px;
+  }
+  .category-photo {
+    height: 220px;
+  }
+  .category.sustainable .category-photo {
+    height: 320px;
+  }
+  .category.special {
+    min-height: 380px;
+  }
+  .manufacture-visual {
+    padding: 30px 7% 85px;
+    min-height: 650px;
+  }
+  .year-card {
+    bottom: 25px;
+  }
+  .film-divider + .manufacture {
+    border-top-width: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .category-grid {
+    gap: 27px 16px;
+  }
+  .category.feature .category-photo {
+    height: 330px;
+  }
+  .category.leather .category-photo {
+    height: 290px;
+  }
+  .category[data-category="hogar"] .category-photo {
+    height: 245px;
+  }
+  .category[data-category="promociones"] .category-photo,
+  .category[data-category="boligrafos"] .category-photo {
+    height: 190px;
+  }
+  .category.sustainable .category-photo {
+    height: 290px;
+  }
+  .category.special {
+    min-height: 330px;
+    padding: 25px;
+  }
+  .category-title {
+    font-size: 21px;
+  }
+  .photo-label {
+    font-size: 8px;
+    padding: 7px 9px;
+  }
+  .film-divider + .manufacture {
+    border-top-width: 12px;
+  }
+  .manufacture-visual {
+    height: 480px;
+    min-height: 0;
+    padding: 20px 6% 20px;
+  }
+  .manufacture-photo {
+    height: 100%;
+    max-height: none;
+  }
+  .manufacture-photo img {
+    height: 100%;
+  }
+  .year-card {
+    left: 6%;
+    bottom: 24px;
+    padding: 12px 15px;
+  }
+  .year-card strong {
+    font-size: 44px;
+  }
+  .year-card > span:first-child {
+    font-size: 11px;
+  }
+  .manufacture-copy {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+  .hero-copy > .eyebrow,
+  .manufacture .section-kicker > span:first-child,
+  .contact-top > .section-kicker {
+    font-size: 9px;
+  }
+  .contact:before {
+    width: 55px;
+    height: 35px;
+    top: 20px;
+    opacity: 0.12;
+  }
+  .universe-footer .reference-note {
+    font-size: 10px;
+  }
+  .process-photo img {
+    height: 175px;
+  }
+  .hero-art-title {
+    font-size: 25px;
+  }
+}
+.dialog-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 18px;
+  color: #59654d;
+  min-height: 36px;
+}
+.dialog-source[hidden] {
+  display: none;
+}
+.dialog-source img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.dialog-source .arrow-icon {
+  width: 15px;
+  height: 15px;
+}
+.dialog-inner > img[src*="cooler-promover"],
+.dialog-inner > img[src*="asado-promover"] {
+  object-fit: contain;
+  background: #eeeee5;
+}
+.process-photo img {
+  object-position: center 84%;
+}

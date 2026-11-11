@@ -1,28 +1,80 @@
-import fs from 'node:fs';
-import {bundleStyles} from './bundle-site-styles.mjs';
-fs.mkdirSync('dist',{recursive:true});
-for(const f of ['mobile-navigation.css','mobile-navigation.js'])fs.copyFileSync(f,'dist/'+f);
-for(const f of ['mobile-footer.css','mobile-footer.js'])fs.copyFileSync(f,'dist/'+f);
-fs.copyFileSync('readability.css','dist/readability.css');
-fs.copyFileSync('categories-refinement.css','dist/categories-refinement.css');
-fs.copyFileSync('benefit-icons.css','dist/benefit-icons.css');
-fs.copyFileSync('hierarchy-refinement.css','dist/hierarchy-refinement.css');
-fs.copyFileSync('boutique-finish.css','dist/boutique-finish.css');
-for(const f of ['film-divider.css','film-divider.js'])fs.copyFileSync(f,'dist/'+f);
-for(const f of ['hero-film.css','hero-film.js'])fs.copyFileSync(f,'dist/'+f);
-fs.copyFileSync('clients-premium.css','dist/clients-premium.css');
-fs.copyFileSync('principles-inline.css','dist/principles-inline.css');
-fs.copyFileSync('principles.css','dist/principles.css');
-fs.copyFileSync('experience-polish.css','dist/experience-polish.css');
-fs.copyFileSync('hero-polish.css','dist/hero-polish.css');
-fs.copyFileSync('section-labels.css','dist/section-labels.css');
-fs.copyFileSync('process-polish.css','dist/process-polish.css');
-fs.copyFileSync('premium-icons.css','dist/premium-icons.css');
-fs.copyFileSync('cinematic.css','dist/cinematic.css');
-fs.copyFileSync('footer-premium.css','dist/footer-premium.css');
-for(const f of ['contacto.html','gracias.html','contact-page.css','contact-page.js','visual-rhythm.css'])fs.copyFileSync(f,'dist/'+f);
-for(const f of ['index.html','styles.css','typography.css','editorial-footer.css','vector-icons.css','brand-details.css','editorial-layout.css','navigation.css','clients-editorial.css','process-editorial.css','contact-refinement.css','app.js'])fs.copyFileSync(f,'dist/'+f);
-fs.cpSync('assets','dist/assets',{recursive:true,filter:p=>!p.endsWith('.png')&&!p.endsWith('.jpg')&&!p.endsWith('logo.svg')});
-fs.writeFileSync('dist/.nojekyll','');
-bundleStyles();
-console.log('Static site built to dist/');
+import fs from "node:fs";
+import path from "node:path";
+import { buildPage } from "./bundle-site-styles.mjs";
+import { prepareResponsiveImages } from "./responsive-images.mjs";
+import sharp from "sharp";
+
+const root = process.cwd(),
+  output = path.resolve(root, "dist");
+if (
+  output !== path.join(root, "dist") ||
+  (fs.existsSync(output) && fs.lstatSync(output).isSymbolicLink())
+)
+  throw Error("Unsafe build output");
+fs.rmSync(output, { recursive: true, force: true });
+fs.mkdirSync(output, { recursive: true });
+const pages = ["index.html", "contacto.html", "gracias.html"];
+const scripts = new Set(),
+  styles = new Set(),
+  assets = new Set();
+for (const file of pages) {
+  const html = fs.readFileSync(file, "utf8");
+  for (const match of html.matchAll(/<script src="([^"?]+)(?:\?[^"\s]*)?"/g))
+    scripts.add(match[1]);
+  for (const match of html.matchAll(
+    /<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="([^":]+\.css)"[^>]*>/g,
+  ))
+    styles.add(match[1]);
+}
+const texts = [...pages, ...scripts, ...styles].map((f) =>
+  fs.readFileSync(f, "utf8"),
+);
+for (const text of texts)
+  for (const match of text.matchAll(
+    /assets\/[a-z\d_./-]+\.(?:svg|webp|jpg|mp4|woff2|txt)/gi,
+  ))
+    assets.add(match[0]);
+assets.add("assets/fonts/OFL.txt");
+for (const file of assets) {
+  if (!fs.existsSync(file)) throw Error("Missing asset " + file);
+  fs.mkdirSync(path.dirname(path.join(output, file)), { recursive: true });
+  fs.copyFileSync(file, path.join(output, file));
+}
+for (const file of scripts) fs.copyFileSync(file, path.join(output, file));
+for (const file of assets) {
+  if (!/^assets\/clients\/\d+\.webp$/.test(file)) continue;
+  await sharp(file)
+    .resize({
+      width: 512,
+      height: 192,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .webp({ lossless: true, effort: 6 })
+    .toFile(path.join(output, file));
+}
+for (const file of ["robots.txt", "sitemap.xml", "llms.txt"])
+  fs.copyFileSync(file, path.join(output, file));
+fs.writeFileSync(path.join(output, ".nojekyll"), "");
+for (const file of pages) await buildPage(file, [...scripts]);
+await prepareResponsiveImages(pages);
+for (const file of pages) {
+  const target = path.join(output, file);
+  let html = fs.readFileSync(target, "utf8");
+  html = html.replace(
+    /(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g,
+    (_, open, json, close) => open + JSON.stringify(JSON.parse(json)) + close,
+  );
+  html = html.replace(/\r?\n[ \t]*/g, " ").replace(/>[ \t]+</g, "> <");
+  fs.writeFileSync(target, html);
+}
+const files = fs
+  .readdirSync(output, { recursive: true })
+  .filter((f) => fs.statSync(path.join(output, f)).isFile());
+const bytes = files.reduce(
+  (sum, f) => sum + fs.statSync(path.join(output, f)).size,
+  0,
+);
+console.log(
+  `Built ${pages.length} pages, ${files.length} files, ${(bytes / 1024 / 1024).toFixed(2)} MiB. Only referenced assets are shipped.`,
+);

@@ -1,4 +1,71 @@
 /* Consistent section labels, matching the process pill. */
-.universe .section-kicker>span:first-child,.manufacture .section-kicker>span:first-child,.clients .section-kicker>span:first-child,.contact-top>.section-kicker,.hero-copy>.eyebrow,.contact-page-intro>.eyebrow,.contact-page-aside>.eyebrow,.contact-form-panel>.eyebrow,.thank-you>.eyebrow,.dialog-copy>.eyebrow{display:inline-flex;align-items:center;align-self:flex-start;width:fit-content;max-width:100%;background:var(--orange);color:#fff;border-radius:99px;padding:8px 15px;font-size:10px;font-weight:600;line-height:1.4;letter-spacing:.025em;text-transform:none}
-.clients .section-kicker:before{display:none}.hero-copy>.eyebrow .status-dot,.contact-page-intro>.eyebrow .status-dot{display:none}.manufacture .section-kicker{justify-content:flex-start}.contact-top>.section-kicker,.contact-page-intro>.eyebrow,.thank-you>.eyebrow{background:#c85c1b}.dialog-copy>.eyebrow{margin-bottom:0}.contact-page-intro>.eyebrow{max-width:100%}
-@media(max-width:760px){.universe .section-kicker>span:first-child,.manufacture .section-kicker>span:first-child,.clients .section-kicker>span:first-child,.contact-top>.section-kicker,.hero-copy>.eyebrow,.contact-page-intro>.eyebrow,.contact-page-aside>.eyebrow,.contact-form-panel>.eyebrow,.thank-you>.eyebrow,.dialog-copy>.eyebrow{font-size:9px;padding:8px 13px}.universe .section-kicker{gap:15px}.universe .section-kicker>span:last-child{font-size:8px}.contact-page-intro>.eyebrow{max-width:290px}}
+.universe .section-kicker > span:first-child,
+.manufacture .section-kicker > span:first-child,
+.clients .section-kicker > span:first-child,
+.contact-top > .section-kicker,
+.hero-copy > .eyebrow,
+.contact-page-intro > .eyebrow,
+.contact-page-aside > .eyebrow,
+.contact-form-panel > .eyebrow,
+.thank-you > .eyebrow,
+.dialog-copy > .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  background: var(--orange);
+  color: #fff;
+  border-radius: 99px;
+  padding: 8px 15px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.025em;
+  text-transform: none;
+}
+.clients .section-kicker:before {
+  display: none;
+}
+.hero-copy > .eyebrow .status-dot,
+.contact-page-intro > .eyebrow .status-dot {
+  display: none;
+}
+.manufacture .section-kicker {
+  justify-content: flex-start;
+}
+.contact-top > .section-kicker,
+.contact-page-intro > .eyebrow,
+.thank-you > .eyebrow {
+  background: #c85c1b;
+}
+.dialog-copy > .eyebrow {
+  margin-bottom: 0;
+}
+.contact-page-intro > .eyebrow {
+  max-width: 100%;
+}
+@media (max-width: 760px) {
+  .universe .section-kicker > span:first-child,
+  .manufacture .section-kicker > span:first-child,
+  .clients .section-kicker > span:first-child,
+  .contact-top > .section-kicker,
+  .hero-copy > .eyebrow,
+  .contact-page-intro > .eyebrow,
+  .contact-page-aside > .eyebrow,
+  .contact-form-panel > .eyebrow,
+  .thank-you > .eyebrow,
+  .dialog-copy > .eyebrow {
+    font-size: 9px;
+    padding: 8px 13px;
+  }
+  .universe .section-kicker {
+    gap: 15px;
+  }
+  .universe .section-kicker > span:last-child {
+    font-size: 8px;
+  }
+  .contact-page-intro > .eyebrow {
+    max-width: 290px;
+  }
+}
