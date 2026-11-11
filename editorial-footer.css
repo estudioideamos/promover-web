@@ -3,7 +3,7 @@
 .marquee-viewport{overflow:hidden}.marquee-track{display:flex;width:max-content;animation:brand-marquee 32s linear infinite}
 .marquee-group{display:flex;flex-shrink:0;align-items:center;gap:36px;padding-right:36px;font:600 clamp(30px,4.2vw,64px)/1.15 var(--display);letter-spacing:-.05em;white-space:nowrap}
 .marquee-star{font-size:.65em;color:var(--orange);font-weight:400}.marquee-group .outlined{color:transparent;-webkit-text-stroke:1px var(--ink)}
-.home-marquee:hover .marquee-track,.home-marquee.paused .marquee-track{animation-play-state:paused}
+
 .marquee-toggle{position:absolute;bottom:8px;right:15px;background:var(--paper);border:1px solid var(--line);width:24px;height:24px;border-radius:50%;font-size:10px;display:grid;place-items:center;z-index:2;opacity:.65}.marquee-toggle:hover,.marquee-toggle:focus-visible{opacity:1}
 @keyframes brand-marquee{to{transform:translateX(-50%)}}
 /* Editorial footer: signature, directory, oversized brand close. */

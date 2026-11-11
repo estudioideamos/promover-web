@@ -6,7 +6,7 @@ Sitio estático editorial en español para Promover Marketing. Fabricación prop
 
 `npm ci`, `npm run build`, `npm run dev` (http://127.0.0.1:4173).
 
-`npm test` verifica vistas de escritorio y móvil, categorías, navegación y enlaces de contacto con Playwright (requiere Chrome instalado). `node scripts/qa-motion.mjs` comprueba la visibilidad del presupuesto en 1366 × 606 px y el movimiento, loop, pausa y reanudación del carrusel. Respeta la preferencia de movimiento reducido; en ese caso, las marcas se recorren con scroll horizontal.
+`npm test` verifica vistas de escritorio y móvil, categorías, navegación y enlaces de contacto con Playwright (requiere Chrome instalado). `node scripts/qa-motion.mjs` comprueba la visibilidad del presupuesto en 1366 × 606 px y el movimiento continuo del carrusel, también al pasar el cursor. No hay controles de pausa. Respeta la preferencia de movimiento reducido; en ese caso, las marcas se recorren con scroll horizontal. `node scripts/qa-navigation.mjs` verifica barra fija, sección activa y navegación móvil por teclado.
 
 ## Contenido y material
 
