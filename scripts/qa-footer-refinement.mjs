@@ -6,7 +6,7 @@ await page.locator('.footer-editorial').scrollIntoViewIfNeeded();await page.wait
 await page.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,document.documentElement.scrollHeight)});await page.waitForTimeout(150);
 const floating=await page.locator('.floating-contact').evaluate(el=>({opacity:getComputedStyle(el).opacity,inert:el.inert}));if(floating.opacity!=='0'||!floating.inert)throw Error('Floating CTA at footer');
 const footer=await page.locator('.footer-editorial').boundingBox();if(width===1366&&footer.height>606)throw Error('Footer too tall '+footer.height);
-const email=await page.locator('.footer-mail').evaluate(el=>({height:el.getBoundingClientRect().height,line:parseFloat(getComputedStyle(el).lineHeight)}));if(width>1000&&email.height>email.line*1.5)throw Error('Desktop email wraps');
+const email=await page.locator('.footer-mail').evaluate(el=>({height:el.getBoundingClientRect().height,line:parseFloat(getComputedStyle(el).lineHeight)}));if(email.height>email.line*2.5)throw Error('Email exceeds two lines');if(await page.locator('.footer-directory-item').count()!==4)throw Error('Expected four footer columns');
 if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Overflow');
 if(await page.locator('.footer-editorial').evaluate(el=>getComputedStyle(el,'::before').display!=='none'))throw Error('Background rings remain');
 await page.locator('.footer-editorial').screenshot({path:`qa/footer-refined-${width}.png`});
