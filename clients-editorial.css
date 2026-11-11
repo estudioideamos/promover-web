@@ -23,3 +23,13 @@
 @media(max-width:760px){.clients.section{padding:45px 6% 28px}.clients-heading{display:block;margin-bottom:25px}.clients .section-kicker{font-size:9px}.clients h2{font-size:clamp(44px,12vw,60px);margin-top:22px;line-height:1.05}.clients-aside{margin-top:24px;max-width:290px;padding-left:16px;padding-bottom:0}.clients-aside p{font-size:12px;line-height:1.8}.clients .logo-window{padding:8px 0;margin-top:30px}.clients .client-logo{width:170px;height:95px;padding:20px}.clients .client-logo img{max-width:min(var(--logo-width,140px),125px);max-height:48px}.client-signoff{display:block;padding-top:19px}.client-signoff>p{font-size:9px}.client-signoff>a{font-size:11px;margin-top:14px;gap:12px}.clients:before{top:50px;right:20px;width:150px;height:100px}}
 
 @media(max-width:760px){.client-signoff{padding-right:55px}}
+
+/* Optical balance and a quieter editorial header. */
+.clients.section{padding-top:48px;padding-bottom:30px}
+.clients h2{font-size:clamp(46px,4.3vw,64px);line-height:1.05;margin-top:22px}
+.clients-heading{margin-bottom:28px;gap:55px}.clients-aside{max-width:300px;padding-left:23px;padding-bottom:4px}
+.clients:before{right:6%;top:25px;width:185px;height:120px;transform:rotate(-12deg);opacity:.045}
+.clients .client-logo:nth-child(6){--logo-width:140px}.clients .client-logo:nth-child(8){--logo-width:125px}.clients .client-logo:nth-child(9){--logo-width:122px}.clients .client-logo:nth-child(10){--logo-width:163px}
+.client-signoff{justify-content:flex-end;padding-top:20px}.client-signoff>a{font-size:13px;gap:18px}
+@media(max-width:900px){.clients h2{font-size:48px}.clients-heading{gap:30px}.clients-aside{padding-left:18px}}
+@media(max-width:760px){.clients.section{padding-top:36px;padding-bottom:26px}.clients h2{font-size:clamp(39px,10.8vw,54px);margin-top:20px;line-height:1.08}.clients-heading{margin-bottom:22px}.clients-aside{margin-top:20px;max-width:290px;padding-left:15px}.clients-aside p{font-size:12px}.clients:before{right:18px;top:20px;width:125px;height:90px}.clients .logo-window{margin-top:24px}.client-signoff{padding-top:18px}.client-signoff>a{margin-top:0;font-size:12px;line-height:1.6;gap:12px}.clients .client-logo:nth-child(6) img{max-width:130px}.clients .client-logo:nth-child(8) img,.clients .client-logo:nth-child(9) img{max-width:115px}.clients .client-logo:nth-child(10) img{max-width:135px}}
