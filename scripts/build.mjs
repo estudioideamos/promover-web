@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 fs.mkdirSync('dist',{recursive:true});
+fs.copyFileSync('premium-icons.css','dist/premium-icons.css');
 fs.copyFileSync('cinematic.css','dist/cinematic.css');
 fs.copyFileSync('footer-premium.css','dist/footer-premium.css');
 for(const f of ['contacto.html','gracias.html','contact-page.css','contact-page.js','visual-rhythm.css'])fs.copyFileSync(f,'dist/'+f);
