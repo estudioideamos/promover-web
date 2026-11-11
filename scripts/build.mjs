@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import {bundleStyles} from './bundle-site-styles.mjs';
 fs.mkdirSync('dist',{recursive:true});
+fs.copyFileSync('hierarchy-refinement.css','dist/hierarchy-refinement.css');
 fs.copyFileSync('boutique-finish.css','dist/boutique-finish.css');
 for(const f of ['film-divider.css','film-divider.js'])fs.copyFileSync(f,'dist/'+f);
 for(const f of ['hero-film.css','hero-film.js'])fs.copyFileSync(f,'dist/'+f);
