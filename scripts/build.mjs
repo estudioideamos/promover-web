@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 fs.mkdirSync('dist',{recursive:true});
+fs.copyFileSync('principles-inline.css','dist/principles-inline.css');
 fs.copyFileSync('principles.css','dist/principles.css');
 fs.copyFileSync('experience-polish.css','dist/experience-polish.css');
 fs.copyFileSync('hero-polish.css','dist/hero-polish.css');
