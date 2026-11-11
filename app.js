@@ -36,6 +36,8 @@ pauseButton.addEventListener('click',()=>{const paused=logoWindow.classList.togg
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 function syncMotionPreference(){pauseButton.disabled=reducedMotion.matches;if(reducedMotion.matches){pauseButton.querySelector('.pause-label').textContent='Movimiento reducido';logoWindow.tabIndex=0}else{pauseButton.querySelector('.pause-label').textContent=logoWindow.classList.contains('paused')?'Reanudar movimiento':'Pausar movimiento';logoWindow.removeAttribute('tabindex')}}
 syncMotionPreference();reducedMotion.addEventListener('change',syncMotionPreference);
+const homeMarquee=document.querySelector('.home-marquee');const marqueeToggle=document.querySelector('.marquee-toggle');
+marqueeToggle.addEventListener('click',()=>{const paused=homeMarquee.classList.toggle('paused');marqueeToggle.setAttribute('aria-pressed',String(paused));marqueeToggle.setAttribute('aria-label',paused?'Reanudar franja animada':'Pausar franja animada');marqueeToggle.firstElementChild.textContent=paused?'▶':'Ⅱ'});
 const floatingContact=document.querySelector('.floating-contact');
 function updateFloatingContact(){const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contacto').getBoundingClientRect();floatingContact.classList.toggle('shown',hero.bottom<80&&!(contact.top<innerHeight&&contact.bottom>0));}
 addEventListener('scroll',updateFloatingContact,{passive:true});addEventListener('resize',updateFloatingContact);updateFloatingContact();
