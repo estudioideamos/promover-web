@@ -3,7 +3,7 @@
 .contact-top .section-kicker{font-size:11px;letter-spacing:.025em;color:var(--ink)}
 .contact-main{display:block;margin:30px 0 27px;position:relative;z-index:1}
 .contact h2{font-size:clamp(58px,6.4vw,100px);line-height:1.12;font-weight:650;letter-spacing:-.04em;text-wrap:initial}
-.contact h2 em{display:inline-block;font-weight:600;letter-spacing:0;font-kerning:normal;font-variant-ligatures:none;line-height:1.15;color:var(--orange);-webkit-text-fill-color:var(--orange);-webkit-text-stroke:1.4px var(--ink);paint-order:stroke fill}
+.contact h2 em{display:inline-block;font-weight:600;letter-spacing:.01em;font-kerning:none;font-variant-ligatures:none;line-height:1.15;color:var(--orange);-webkit-text-fill-color:var(--orange);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill}
 .contact:before{content:'';display:block;position:absolute;width:96px;height:96px;top:95px;right:6%;bottom:auto;left:auto;background:none;mask:none;border:1px solid #f7edda;border-radius:50%;opacity:.65;pointer-events:none;z-index:0}
 .contact-bottom{display:block;padding-top:22px;border-top:1px solid #24262133}
 .contact-action-block{display:flex;flex-direction:column;align-items:flex-start;gap:15px;max-width:440px}
@@ -15,3 +15,5 @@
 @media(max-width:1100px) and (min-width:761px){.contact h2{font-size:6.6vw}.contact:before{width:78px;height:78px}.contact-main{margin-top:28px}}
 @media(max-width:760px){.contact{padding:26px 6% 32px}.contact-top{padding-bottom:15px}.contact-top .section-kicker{font-size:10px}.contact h2{font-size:clamp(37px,9.3vw,62px);line-height:1.14;letter-spacing:-.045em}.contact h2 em{letter-spacing:0;line-height:1.15;-webkit-text-stroke:1px var(--ink)}.contact-main{margin:26px 0 24px;padding-right:0}.contact:before{width:30px;height:30px;top:15px;right:6%;opacity:.6}.contact-bottom{padding-top:20px}.contact-action-block{max-width:none;gap:14px}.contact-invitation{font-size:14px;line-height:1.65}.contact-action-block .button{min-width:0;width:100%;font-size:12px;padding:17px 18px;min-height:56px;gap:12px}.contact-hours{font-size:11px}.contact-action-block .button .brand-icon{width:19px;height:19px;min-width:19px}}
 @media(max-width:360px){.contact h2{font-size:34px}.contact-invitation{font-size:13px}.contact-action-block .button{font-size:11px}.contact-hours{font-size:10px}}
+.marquee-group .outlined{letter-spacing:.01em;font-kerning:none;font-variant-ligatures:none;color:var(--orange);-webkit-text-fill-color:var(--orange);-webkit-text-stroke:1.4px var(--ink);paint-order:stroke fill}
+@media(max-width:760px){.contact h2 em{letter-spacing:.01em;-webkit-text-stroke-width:1.4px}.marquee-group .outlined{-webkit-text-stroke-width:1.2px}}
