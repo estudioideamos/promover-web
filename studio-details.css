@@ -37,12 +37,22 @@ picture {
 .hero h1 em {
   color: #cd651f !important;
 }
-.hero-copy > .eyebrow {
+.hero-copy > .eyebrow,
+.universe .section-kicker > span:first-child,
+.manufacture .section-kicker > span:first-child,
+.clients .section-kicker > span:first-child,
+.process .section-kicker > span:first-child,
+.contact-top > .section-kicker,
+.contact-page-intro > .eyebrow,
+.contact-page-aside > .eyebrow,
+.contact-form-panel > .eyebrow,
+.thank-you > .eyebrow,
+.dialog-copy > .eyebrow {
   display: inline-flex;
   align-items: center;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #b94610 !important;
+  padding: 8px 14px !important;
+  border-radius: 999px !important;
+  background: var(--orange) !important;
   color: #fff !important;
   font-size: 12px !important;
   line-height: 1.5;
@@ -57,14 +67,6 @@ picture {
 .category-subtitle {
   color: #626958 !important;
 }
-.eyebrow,
-.contact-page-intro > .eyebrow,
-.contact-page-aside > .eyebrow,
-.contact-form-panel > .eyebrow,
-.thank-you > .eyebrow {
-  background-color: #b94610 !important;
-  color: #fff !important;
-}
 a,
 button,
 summary,
@@ -76,13 +78,6 @@ select {
 :focus-visible {
   outline: 2px solid var(--studio-focus);
   outline-offset: 5px;
-}
-.section-kicker > span:first-child:not(:last-child),
-.section-kicker > span:only-child,
-.process > .section-kicker > span:first-child,
-.hero .eyebrow {
-  background-color: #c65215 !important;
-  color: white !important;
 }
 .category-photo {
   border-radius: 3px;

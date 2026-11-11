@@ -34,11 +34,6 @@
 .manufacture .section-kicker {
   justify-content: flex-start;
 }
-.contact-top > .section-kicker,
-.contact-page-intro > .eyebrow,
-.thank-you > .eyebrow {
-  background: #c85c1b;
-}
 .dialog-copy > .eyebrow {
   margin-bottom: 0;
 }

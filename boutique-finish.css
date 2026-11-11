@@ -108,38 +108,6 @@
 .hero-art-title {
   font-size: clamp(20px, 2vw, 29px);
 }
-/* Labels carry hierarchy; only principal section introductions keep the pill. */
-.hero-copy > .eyebrow {
-  background: none;
-  color: #706e5d;
-  border-radius: 0;
-  padding: 0;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.035em;
-}
-.hero-copy > .eyebrow .status-dot {
-  display: inline-block;
-  background: var(--orange);
-}
-.manufacture .section-kicker > span:first-child {
-  background: none;
-  color: #6f725e;
-  padding: 0;
-  border-radius: 0;
-  font-size: 10px;
-  letter-spacing: 0.035em;
-  font-weight: 500;
-}
-.contact-top > .section-kicker {
-  background: none;
-  color: var(--ink);
-  padding: 0;
-  border-radius: 0;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.035em;
-}
 .contact:before {
   opacity: 0.1;
   width: 125px;
