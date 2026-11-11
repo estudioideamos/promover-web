@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 fs.mkdirSync('dist',{recursive:true});
+for(const f of ['film-divider.css','film-divider.js'])fs.copyFileSync(f,'dist/'+f);
 for(const f of ['hero-film.css','hero-film.js'])fs.copyFileSync(f,'dist/'+f);
 fs.copyFileSync('clients-premium.css','dist/clients-premium.css');
 fs.copyFileSync('principles-inline.css','dist/principles-inline.css');
