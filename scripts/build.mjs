@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 fs.mkdirSync('dist',{recursive:true});
+for(const f of ['contacto.html','gracias.html','contact-page.css','contact-page.js','visual-rhythm.css'])fs.copyFileSync(f,'dist/'+f);
 for(const f of ['index.html','styles.css','typography.css','editorial-footer.css','vector-icons.css','brand-details.css','editorial-layout.css','navigation.css','clients-editorial.css','process-editorial.css','contact-refinement.css','app.js'])fs.copyFileSync(f,'dist/'+f);
 fs.cpSync('assets','dist/assets',{recursive:true,filter:p=>!p.endsWith('.png')&&!p.endsWith('.jpg')&&!p.endsWith('logo.svg')});
 fs.writeFileSync('dist/.nojekyll','');
