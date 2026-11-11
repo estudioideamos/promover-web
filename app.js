@@ -52,46 +52,36 @@ const categories = {
   },
 };
 const nav = document.querySelector("#navigation");
-function closeMenu() {
-  window.promoverCloseMenu?.();
-}
 const header = document.querySelector(".header");
 const sectionLinks = [...nav.querySelectorAll("[data-nav]")];
-let sectionObserver;
-function updateHeader() {
+const navigationTargets = sectionLinks.map((link) => ({
+  link,
+  section: document.querySelector(link.hash),
+}));
+let navigationFrame = 0;
+function syncNavigation() {
+  navigationFrame = 0;
+  // Batch geometry reads before attribute writes; no layout read during startup.
+  const states = navigationTargets.map(({ link, section }) => {
+    const rect = section?.getBoundingClientRect();
+    return { link, active: rect && rect.top <= 140 && rect.bottom > 140 };
+  });
   header.classList.toggle("scrolled", scrollY > 20);
-}
-function observeNavigation() {
-  sectionObserver?.disconnect();
-  const active = new Set();
-  sectionObserver = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) active.add(entry.target.id);
-        else active.delete(entry.target.id);
-      }
-      for (const link of sectionLinks) {
-        if (active.has(link.hash.slice(1)))
-          link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      }
-    },
-    {
-      rootMargin: `-100px 0px -${Math.max(0, innerHeight - 140)}px 0px`,
-      threshold: 0,
-    },
-  );
-  for (const link of sectionLinks) {
-    const section = document.querySelector(link.hash);
-    if (section) sectionObserver.observe(section);
+  for (const { link, active } of states) {
+    if (active && link.getAttribute("aria-current") !== "location")
+      link.setAttribute("aria-current", "location");
+    else if (!active && link.hasAttribute("aria-current"))
+      link.removeAttribute("aria-current");
   }
 }
-addEventListener("scroll", updateHeader, { passive: true });
-addEventListener("resize", () => {
-  if (innerWidth > 900) closeMenu();
-  observeNavigation();
+function scheduleNavigation() {
+  if (!navigationFrame) navigationFrame = requestAnimationFrame(syncNavigation);
+}
+addEventListener("scroll", scheduleNavigation, { passive: true });
+addEventListener("resize", scheduleNavigation);
+addEventListener("pageshow", () => {
+  if (scrollY > 20) scheduleNavigation();
 });
-observeNavigation();
 const dialog = document.querySelector("#category-dialog");
 let lastCategory;
 document.querySelectorAll("[data-category]").forEach((button) =>
