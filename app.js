@@ -12,10 +12,7 @@ categories.promociones.image='cooler-promover';categories.promociones.sourceUrl=
 categories.promociones.title='Conservadoras y accesorios';
 categories.hogar.image='asado-promover';categories.hogar.sourceUrl='https://www.instagram.com/promover.marketing/p/De0FTsCDjHV/';
 const menu=document.querySelector('.menu-toggle'); const nav=document.querySelector('#navigation');
-function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');nav.classList.remove('open');document.body.classList.remove('menu-open');}
-menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');nav.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);if(open)nav.querySelector('a').focus()});
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-document.addEventListener('keydown',e=>{if(menu.getAttribute('aria-expanded')!=='true')return;if(e.key==='Escape'){closeMenu();menu.focus()}if(e.key==='Tab'){const items=[...nav.querySelectorAll('a'),menu];const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+function closeMenu(){window.promoverCloseMenu?.()}
 const header=document.querySelector('.header');let headerFrame=0;
 function updateHeader(){headerFrame=0;header.classList.toggle('scrolled',scrollY>20);let current='';for(const link of nav.querySelectorAll('[data-nav]')){const section=document.querySelector(link.getAttribute('href'));if(!section)continue;const rect=section.getBoundingClientRect();if(rect.top<=140&&rect.bottom>140)current=link.getAttribute('href')}for(const link of nav.querySelectorAll('[data-nav]')){if(link.getAttribute('href')===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')}}
 addEventListener('scroll',()=>{if(!headerFrame)headerFrame=requestAnimationFrame(updateHeader)},{passive:true});addEventListener('resize',()=>{if(innerWidth>900)closeMenu();updateHeader()});updateHeader();

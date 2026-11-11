@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import {bundleStyles} from './bundle-site-styles.mjs';
 fs.mkdirSync('dist',{recursive:true});
+for(const f of ['mobile-navigation.css','mobile-navigation.js'])fs.copyFileSync(f,'dist/'+f);
 for(const f of ['mobile-footer.css','mobile-footer.js'])fs.copyFileSync(f,'dist/'+f);
 fs.copyFileSync('readability.css','dist/readability.css');
 fs.copyFileSync('categories-refinement.css','dist/categories-refinement.css');
