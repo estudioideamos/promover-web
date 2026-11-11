@@ -1,0 +1,11 @@
+node_modules/
+materials/
+*.html.tmp
+drive-materials.html
+logos.html
+clientes.html
+referencias.html
+clientes.json
+referencias.json
+qa/
+dist/
