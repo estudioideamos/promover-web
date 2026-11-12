@@ -14,12 +14,12 @@ try {
     await page.mouse.move(600, 300);
     const start = await page.evaluate(() => scrollY);
     await page.mouse.wheel(0, 120);
-    await page.waitForFunction((y) => scrollY >= y + 20, start);
+    await page.waitForFunction((y) => scrollY >= y + 26, start);
     await page.waitForTimeout(300);
     const travel = await page.evaluate((y) => scrollY - y, start);
     assert.ok(
-      travel >= 20 && travel <= 22,
-      `${file}: expected ~21px, got ${travel}`,
+      travel >= 26 && travel <= 28,
+      `${file}: expected ~27px, got ${travel}`,
     );
     const firstFrame = await page.evaluate(() => {
       const y = scrollY;
@@ -72,7 +72,7 @@ try {
     );
     await page.close();
     console.log(
-      `PASS ${file}: trusted wheel advances ~21px; zoom and horizontal remain native; reduced motion stays bounded`,
+      `PASS ${file}: trusted wheel advances ~27px; zoom and horizontal remain native; reduced motion stays bounded`,
     );
   }
   const page = await browser.newPage({
