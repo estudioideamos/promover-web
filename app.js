@@ -3,28 +3,28 @@ const categories = {
     title: "Textil",
     image: "textil",
     description:
-      "Prendas que llevan tu identidad. Pensamos la indumentaria como una extensión de tu marca: desde el concepto y la moldería hasta los detalles de terminación.",
+      "Indumentaria que lleva tu identidad. Desarrollamos cada prenda desde la moldería hasta los detalles de terminación, según tu proyecto.",
     tags: ["Indumentaria", "Identidad de marca", "Moldería propia"],
   },
   marroquineria: {
     title: "Marroquinería",
     image: "cuero",
     description:
-      "Objetos para acompañar todos los días. Desarrollamos propuestas de marroquinería para llevar la identidad de tu empresa a piezas funcionales y cuidadas.",
+      "Bolsos y accesorios para acompañar todos los días. Diseñamos piezas funcionales y cuidadas que llevan la identidad de tu empresa.",
     tags: ["Bolsos y accesorios", "Desarrollo a medida", "Funcionalidad"],
   },
   especiales: {
     title: "Desarrollos especiales",
     image: "objetos",
     description:
-      "Hay ideas que necesitan su propia forma. Integramos diseño, moldería y fabricación para desarrollar una propuesta particular para tu empresa, tu campaña o tu evento.",
+      "Tu idea, con su propia forma. Integramos diseño, moldería y fabricación en una propuesta para tu empresa, campaña o evento.",
     tags: ["Diseño a medida", "Fabricación propia", "Proyectos especiales"],
   },
   boligrafos: {
     title: "Bolígrafos",
     image: "boligrafos",
     description:
-      "Un detalle cotidiano puede ser un punto de contacto con tu marca. Consultanos por propuestas de escritura para tus acciones de comunicación y regalos empresarios.",
+      "Un detalle cotidiano que lleva tu marca. Explorá propuestas de escritura para tus acciones de comunicación y regalos empresarios.",
     tags: ["Escritura", "Regalos empresarios", "Comunicación"],
   },
   promociones: {
@@ -32,7 +32,7 @@ const categories = {
     image: "cooler-promover",
     sourceUrl: "https://www.instagram.com/promover.marketing/p/DesRZU7D8re/",
     description:
-      "Acompañamos el objetivo de cada acción con una propuesta de artículos promocionales pensada para tu público y el mensaje que querés transmitir.",
+      "Tu marca, en cada salida. Conservadoras y accesorios pensados para tu público, tu campaña y el mensaje que querés transmitir.",
     tags: ["Acciones de marca", "Eventos", "Campañas"],
   },
   hogar: {
@@ -40,14 +40,14 @@ const categories = {
     image: "asado-promover",
     sourceUrl: "https://www.instagram.com/promover.marketing/p/De0FTsCDjHV/",
     description:
-      "Tu marca también puede formar parte de los momentos de disfrute. Buscamos objetos útiles y cercanos para acompañar la vida cotidiana de quienes los reciben.",
+      "Tu marca también acompaña los buenos momentos. Objetos útiles para disfrutar en casa, al aire libre y en compañía.",
     tags: ["Vida cotidiana", "Tiempo libre", "Regalos"],
   },
   sustentable: {
     title: "Sustentable",
     image: "sustentable",
     description:
-      "Una categoría para explorar alternativas de materiales y objetos reutilizables según las necesidades de tu proyecto. Consultanos por las opciones disponibles y sus características.",
+      "Objetos reutilizables y materiales elegidos para acompañar tu marca. Desarrollamos una propuesta según tu proyecto.",
     tags: ["Reutilizables", "Selección de materiales", "Propuestas a medida"],
   },
 };

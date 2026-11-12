@@ -46,6 +46,17 @@ try {
             bottom: button.bottom,
             top: rect.top,
             end: rect.bottom,
+            actionGap:
+              button.top -
+              [...dialog.querySelector(".dialog-copy").children]
+                .filter(
+                  (el) =>
+                    el !== dialog.querySelector("#dialog-cta") &&
+                    getComputedStyle(el).display !== "none" &&
+                    getComputedStyle(el).position !== "absolute",
+                )
+                .at(-1)
+                .getBoundingClientRect().bottom,
           };
         });
       assert.ok(
@@ -61,13 +72,21 @@ try {
         `${key}: CTA outside viewport`,
       );
       assert.ok(
+        geometry.actionGap <= 24,
+        `${key}: excessive space before the CTA`,
+      );
+      assert.equal(
+        await page.locator("#dialog-cta").innerText(),
+        "Consultá por esta línea",
+      );
+      assert.ok(
         (await page.locator("#dialog-cta").getAttribute("href")).includes(
           "5491167172341?text=",
         ),
       );
-      if (key === "promociones")
+      if (key === "promociones" || key === "sustentable")
         await page.screenshot({
-          path: `qa/product-dialog-${width}-${height}.png`,
+          path: `qa/product-dialog-${key}-${width}-${height}.png`,
         });
       await page.keyboard.press("Escape");
       await page.waitForFunction(
