@@ -324,10 +324,37 @@
   color: #526247;
   margin: 0;
 }
-@media (min-width: 1101px) and (min-height: 850px) {
+@media (min-width: 761px) {
   .contact-page .contact-page-aside {
     position: sticky;
-    top: 110px;
+    top: var(--contact-aside-top, 110px);
+  }
+}
+@media (min-width: 1101px) and (max-height: 800px) {
+  .contact-page .contact-page-aside {
+    padding-top: 0;
+  }
+  .contact-page .contact-page-aside h2 {
+    font-size: 32px;
+    margin: 16px 0 12px;
+  }
+  .contact-page .contact-page-aside > p {
+    line-height: 1.6 !important;
+  }
+  .contact-page .contact-channels {
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .contact-page .contact-channel-card {
+    min-height: 64px;
+    padding: 10px 14px;
+  }
+  .contact-page .contact-channel-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .contact-page .contact-location {
+    margin-top: 18px;
   }
 }
 @media (min-width: 761px) and (max-width: 1100px) {

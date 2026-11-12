@@ -7,6 +7,23 @@ addEventListener(
   { passive: true },
 );
 const form = document.querySelector("form");
+const contactAside = document.querySelector(".contact-page-aside");
+const contactHeader = document.querySelector(".header");
+if (contactAside && contactHeader) {
+  // Short viewports pin the bottom of the sidebar so every contact remains reachable.
+  const syncAside = () => {
+    const top = Math.min(
+      contactHeader.offsetHeight + 18,
+      innerHeight - contactAside.offsetHeight - 20,
+    );
+    contactAside.style.setProperty("--contact-aside-top", `${top}px`);
+  };
+  const asideObserver = new ResizeObserver(syncAside);
+  asideObserver.observe(contactAside);
+  asideObserver.observe(contactHeader);
+  addEventListener("resize", syncAside, { passive: true });
+  syncAside();
+}
 if (form) {
   const button = form.querySelector("button"),
     status = document.querySelector("#form-status");

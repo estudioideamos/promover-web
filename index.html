@@ -9,7 +9,7 @@
       name="description"
       content="Fabricación propia de indumentaria, marroquinería y artículos promocionales a medida desde 1996. Conocé Promover y contanos tu proyecto."
     />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="typography.css" />
     <link rel="stylesheet" href="editorial-footer.css" />
@@ -1486,6 +1486,34 @@
           width="900"
           height="600"
         />
+        <nav class="product-pager" aria-label="Explorar productos">
+          <button
+            type="button"
+            data-product-previous
+            aria-label="Producto anterior"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 12H5m6-6-6 6 6 6" /></svg
+            ><span>Anterior</span>
+          </button>
+          <button
+            type="button"
+            data-product-next
+            aria-label="Producto siguiente"
+          >
+            <span>Siguiente</span
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </nav>
+        <span
+          id="dialog-announcement"
+          class="product-announcement"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></span>
         <div class="dialog-copy">
           <p class="eyebrow">Productos / Promover</p>
           <h2 id="dialog-title"></h2>

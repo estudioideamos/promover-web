@@ -84,34 +84,72 @@ addEventListener("pageshow", () => {
 });
 const dialog = document.querySelector("#category-dialog");
 let lastCategory;
+const categoryButtons = [...document.querySelectorAll("[data-category]")];
+let categoryIndex = 0;
 document.querySelectorAll("[data-category]").forEach((button) =>
   button.addEventListener("click", () => {
-    const c = categories[button.dataset.category];
     lastCategory = button;
-    const source = document.querySelector("#dialog-source");
-    source.hidden = !c.sourceUrl;
-    if (c.sourceUrl) source.href = c.sourceUrl;
-    document.querySelector("#dialog-title").textContent = c.title;
-    document.querySelector("#dialog-description").textContent = c.description;
-    const img = document.querySelector("#dialog-image");
-    img.src = `assets/${c.image}.webp`;
-    img.alt = `Imagen ilustrativa de ${c.title}`;
-    document.querySelector("#dialog-tags").replaceChildren(
-      ...c.tags.map((t) => {
-        const s = document.createElement("span");
-        s.textContent = t;
-        return s;
-      }),
-    );
-    document.querySelector("#dialog-cta").href =
-      "https://wa.me/5491167172341?text=" +
-      encodeURIComponent(
-        `Hola Promover, quiero solicitar un presupuesto para ${c.title}.`,
-      );
+    renderCategory(categoryButtons.indexOf(button));
     dialog.showModal();
     document.body.classList.add("locked");
   }),
 );
+function renderCategory(index, announce = false) {
+  categoryIndex = (index + categoryButtons.length) % categoryButtons.length;
+  const c = categories[categoryButtons[categoryIndex].dataset.category];
+  const source = document.querySelector("#dialog-source");
+  source.hidden = !c.sourceUrl;
+  if (c.sourceUrl) source.href = c.sourceUrl;
+  else source.removeAttribute("href");
+  document.querySelector("#dialog-title").textContent = c.title;
+  document.querySelector("#dialog-description").textContent = c.description;
+  const img = document.querySelector("#dialog-image");
+  img.src = `assets/${c.image}.webp`;
+  img.alt = `Imagen ilustrativa de ${c.title}`;
+  document.querySelector("#dialog-tags").replaceChildren(
+    ...c.tags.map((t) => {
+      const s = document.createElement("span");
+      s.textContent = t;
+      return s;
+    }),
+  );
+  document.querySelector("#dialog-cta").href =
+    "https://wa.me/5491167172341?text=" +
+    encodeURIComponent(
+      `Hola Promover, quiero solicitar un presupuesto para ${c.title}.`,
+    );
+  for (const [selector, step, label] of [
+    ["[data-product-previous]", -1, "anterior"],
+    ["[data-product-next]", 1, "siguiente"],
+  ]) {
+    const adjacent =
+      categories[
+        categoryButtons[
+          (categoryIndex + step + categoryButtons.length) %
+            categoryButtons.length
+        ].dataset.category
+      ];
+    dialog
+      .querySelector(selector)
+      .setAttribute("aria-label", `Producto ${label}: ${adjacent.title}`);
+  }
+  document.querySelector("#dialog-announcement").textContent = announce
+    ? c.title
+    : "";
+}
+dialog
+  .querySelector("[data-product-previous]")
+  .addEventListener("click", () => renderCategory(categoryIndex - 1, true));
+dialog
+  .querySelector("[data-product-next]")
+  .addEventListener("click", () => renderCategory(categoryIndex + 1, true));
+dialog.addEventListener("keydown", (event) => {
+  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    renderCategory(categoryIndex + (event.key === "ArrowRight" ? 1 : -1), true);
+  }
+});
 document
   .querySelector(".dialog-close")
   .addEventListener("click", () => dialog.close());

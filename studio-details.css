@@ -887,3 +887,49 @@ select {
     transition: none;
   }
 }
+
+/* Quiet cinematic light and a more balanced closing signature. */
+.footer.footer-editorial {
+  background:
+    radial-gradient(ellipse at 72% 0%, #79604418, transparent 58%),
+    radial-gradient(ellipse at 38% 48%, #52634420, transparent 64%),
+    linear-gradient(100deg, #060c08, #182116 48%, #0a120c);
+}
+@media (min-width: 1101px) {
+  .footer .footer-directory {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(
+        0,
+        1fr
+      ) minmax(0, 1fr);
+    gap: clamp(20px, 2.4vw, 38px);
+    padding: 22px 0 34px;
+  }
+  .footer .footer-directory-item:last-child {
+    width: 100%;
+    max-width: none;
+    justify-self: end;
+    text-align: right;
+    align-items: flex-end;
+  }
+  .footer .footer-directory-item:last-child .footer-toggle-content {
+    width: 100%;
+  }
+  .footer .footer-directory-item:last-child p {
+    line-height: 1.7 !important;
+  }
+  .footer .footer-directory-item:last-child small {
+    display: block;
+    max-width: 26ch;
+    margin-left: auto;
+  }
+  .footer .footer-brand-name {
+    width: 92%;
+    margin: 6px auto 0;
+  }
+  .footer .footer-closing {
+    padding-top: 30px;
+  }
+  .footer .footer-legal {
+    padding-top: 30px;
+  }
+}
