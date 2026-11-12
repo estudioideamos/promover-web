@@ -61,15 +61,28 @@
         continue;
       if (
         node.matches(
-          'dialog, textarea, input, select, [contenteditable]:not([contenteditable="false"]), [data-native-scroll]',
+          'dialog, [contenteditable]:not([contenteditable="false"]), [data-native-scroll]',
         )
+      )
+        return true;
+      // Keep native selection/number controls when they are actually being used.
+      if (
+        node === document.activeElement &&
+        node.matches('select, input[type="number"], input[type="range"]')
       )
         return true;
       if (
         node.scrollHeight > node.clientHeight + 1 &&
         /auto|scroll/.test(getComputedStyle(node).overflowY)
-      )
-        return true;
+      ) {
+        const roomBelow =
+          node.scrollHeight - node.clientHeight - node.scrollTop;
+        if (
+          (event.deltaY > 0 && roomBelow > 1) ||
+          (event.deltaY < 0 && node.scrollTop > 1)
+        )
+          return true;
+      }
     }
     return false;
   }
@@ -112,7 +125,10 @@
       }
       // A rapid burst can never queue more than 237.62752px ahead of the current view.
       const next = clamp(
-        Math.max(position - 237.62752, Math.min(position + 237.62752, target + distance)),
+        Math.max(
+          position - 237.62752,
+          Math.min(position + 237.62752, target + distance),
+        ),
       );
       if (next === target) {
         if (frame) event.preventDefault();

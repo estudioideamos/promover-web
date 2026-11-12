@@ -158,6 +158,9 @@
 .floating-contact > img.brand-icon {
   filter: brightness(0) invert(1);
 }
+.contact-page textarea {
+  overscroll-behavior-y: contain;
+}
 .contact-channel-copy {
   min-width: 0;
 }

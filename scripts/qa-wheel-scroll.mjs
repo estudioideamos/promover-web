@@ -90,7 +90,7 @@ try {
       el.dispatchEvent(e);
       return e.defaultPrevented;
     }),
-    false,
+    true,
   );
   await page.goto("http://127.0.0.1:4173/");
   await page.locator("[data-category=textil]").click();
@@ -135,7 +135,7 @@ try {
   );
   await mobile.close();
   console.log(
-    "PASS native textarea, modal and mobile behavior; pointer interaction cancels easing",
+    "PASS consistent page scrolling over empty textarea, native modal and mobile behavior; pointer interaction cancels easing",
   );
 } finally {
   await browser.close();
