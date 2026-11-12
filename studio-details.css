@@ -543,6 +543,21 @@ select {
 .contact-action-block > .contact-invitation {
   grid-row: 1;
 }
+/* White lettering keeps the orange actions visually consistent. */
+.button.orange,
+.header .nav-contact,
+.contact .contact-form-link {
+  color: #fff !important;
+}
+.button.orange .brand-icon,
+.button.orange .arrow-icon,
+.header .nav-contact .arrow-icon,
+.contact .contact-form-link .arrow-icon {
+  color: inherit !important;
+}
+.contact .contact-form-link {
+  border-color: #ffffff70;
+}
 .contact-action-block > .contact-form-link {
   grid-column: 1;
   grid-row: 2;
