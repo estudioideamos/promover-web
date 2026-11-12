@@ -154,7 +154,7 @@ body {
 .floating-contact,
 .floating-contact.compact {
   background: #25d366 !important;
-  color: #063c25 !important;
+  color: #fff !important;
   border-color: #25d366 !important;
   box-shadow: 0 5px 20px #075e5433;
 }
