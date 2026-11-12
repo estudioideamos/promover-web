@@ -3,7 +3,7 @@
 > Fabricación propia de indumentaria, marroquinería y artículos promocionales a medida desde 1996. Sitio institucional en español de Argentina.
 
 ## Páginas oficiales
-- [Inicio](https://estudioideamos.github.io/promover-web/): categorías, fabricación, empresas que confiaron en Promover y proceso de trabajo.
+- [Inicio](https://estudioideamos.github.io/promover-web/): productos, fabricación, empresas que confiaron en Promover y proceso de trabajo.
 - [Contacto y presupuestos](https://estudioideamos.github.io/promover-web/contacto.html): formulario para describir un proyecto y canales directos de contacto.
 
 ## Actividad
