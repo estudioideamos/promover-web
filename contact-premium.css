@@ -149,6 +149,12 @@
 .contact-icon-accent {
   stroke: #dc762f;
 }
+.contact-page .contact-email .contact-channel-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2.2;
+  color: var(--ink);
+}
 .contact-channel-copy {
   min-width: 0;
 }
