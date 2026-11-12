@@ -14,12 +14,12 @@ try {
     await page.mouse.move(600, 300);
     const start = await page.evaluate(() => scrollY);
     await page.mouse.wheel(0, 120);
-    await page.waitForFunction((y) => scrollY >= y + 64, start);
-    await page.waitForTimeout(180);
+    await page.waitForFunction((y) => scrollY >= y + 11, start);
+    await page.waitForTimeout(300);
     const travel = await page.evaluate((y) => scrollY - y, start);
     assert.ok(
-      travel >= 64 && travel <= 68,
-      `${file}: expected ~66px, got ${travel}`,
+      travel >= 11 && travel <= 13,
+      `${file}: expected ~12px, got ${travel}`,
     );
     const firstFrame = await page.evaluate(() => {
       const y = scrollY;
@@ -35,14 +35,13 @@ try {
       );
     });
     assert.ok(
-      firstFrame > 0 && firstFrame < 50,
+      firstFrame >= 0 && firstFrame < 3,
       "Wheel travel must ease over frames",
     );
     const native = await page.evaluate(() => {
       window.dispatchEvent(new PointerEvent("pointerdown"));
       const result = [];
       for (const init of [
-        { deltaY: 6.5 },
         { deltaY: 120, ctrlKey: true },
         { deltaY: 120, deltaX: 10 },
         { deltaY: 120, shiftKey: true },
@@ -57,7 +56,7 @@ try {
       }
       return result;
     });
-    assert.deepEqual(native, [false, false, false, false]);
+    assert.deepEqual(native, [false, false, false]);
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(
       await page.evaluate(() => {
@@ -69,11 +68,11 @@ try {
         document.body.dispatchEvent(event);
         return event.defaultPrevented;
       }),
-      false,
+      true,
     );
     await page.close();
     console.log(
-      `PASS ${file}: trusted wheel slows to 55% travel; precision, zoom, horizontal and reduced-motion events remain native`,
+      `PASS ${file}: trusted wheel advances ~12px; zoom and horizontal remain native; reduced motion stays bounded`,
     );
   }
   const page = await browser.newPage({

@@ -1,14 +1,13 @@
-/* Ease discrete mouse-wheel steps without taking over native gestures or controls. */
+/* A deliberately slow, bounded desktop wheel path; touch and controls stay native. */
 (() => {
-  const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+  const finePointer = matchMedia("(any-pointer: fine)");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let frame = 0,
     target = 0,
     position = 0,
     velocity = 0,
     lastWritten = 0,
-    lastTime = 0,
-    wheelUntil = 0;
+    lastTime = 0;
   const limit = () =>
     Math.max(0, document.documentElement.scrollHeight - innerHeight);
   const clamp = (value) => Math.max(0, Math.min(limit(), value));
@@ -17,7 +16,6 @@
     frame = 0;
     lastTime = 0;
     velocity = 0;
-    wheelUntil = 0;
     document.documentElement.classList.remove("wheel-active");
   }
   function tick(time) {
@@ -30,19 +28,19 @@
     lastTime = time;
     target = clamp(target);
     // Exact critically damped spring: preserve velocity as new wheel steps arrive.
-    const frequency = 13.5;
+    const frequency = 10;
     const displacement = position - target;
     const momentum = velocity + frequency * displacement;
     const decay = Math.exp(-frequency * elapsed);
     const springPosition = target + (displacement + momentum * elapsed) * decay;
-    const maxStep = 900 * elapsed;
+    const maxStep = 240 * elapsed;
     const nextPosition =
       position +
       Math.max(-maxStep, Math.min(maxStep, springPosition - position));
     position = clamp(nextPosition);
     velocity = Math.max(
-      -900,
-      Math.min(900, (velocity - frequency * momentum * elapsed) * decay),
+      -240,
+      Math.min(240, (velocity - frequency * momentum * elapsed) * decay),
     );
     if (position !== nextPosition) velocity = 0;
     const finished =
@@ -79,16 +77,10 @@
     "wheel",
     (event) => {
       if (!event.deltaY && !event.deltaX) return;
-      const discrete =
-        event.deltaMode !== 0 ||
-        (Number.isInteger(event.deltaY) && Math.abs(event.deltaY) >= 24);
-      const wheelContinuation = event.timeStamp < wheelUntil;
       if (
         event.defaultPrevented ||
         !event.cancelable ||
         !finePointer.matches ||
-        reduced.matches ||
-        (!discrete && !wheelContinuation) ||
         !event.deltaY ||
         event.deltaX ||
         event.ctrlKey ||
@@ -111,14 +103,22 @@
       const unit =
         event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
       const distance =
-        Math.max(-300, Math.min(300, event.deltaY * unit)) * 0.55;
-      const next = clamp(target + distance);
+        Math.max(-100, Math.min(100, event.deltaY * unit)) * 0.12;
+      if (reduced.matches) {
+        cancel();
+        event.preventDefault();
+        scrollTo({ top: clamp(scrollY + distance), behavior: "instant" });
+        return;
+      }
+      // A rapid burst can never queue more than 48px ahead of the current view.
+      const next = clamp(
+        Math.max(position - 48, Math.min(position + 48, target + distance)),
+      );
       if (next === target) {
         if (frame) event.preventDefault();
         return;
       }
       event.preventDefault();
-      wheelUntil = event.timeStamp + 240;
       target = next;
       if (!frame) {
         document.documentElement.classList.add("wheel-active");

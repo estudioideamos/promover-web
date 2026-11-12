@@ -45,7 +45,7 @@ try {
       if (prevented.length === 1) requestAnimationFrame(record);
       await new Promise((resolve) => setTimeout(resolve, 90));
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1800));
     done = true;
     return {
       samples,
@@ -61,8 +61,9 @@ try {
     "All parts of a wheel gesture, including small tail events, must share the same easing",
   );
   assert.ok(
-    Math.abs(result.end - result.initial - (720 + 61.5) * 0.55) < 2,
-    "Burst travel must match accumulated wheel input",
+    result.end > result.initial &&
+      result.end - result.initial <= (600 + 61.5) * 0.12 + 2,
+    "Burst travel must stay within the much slower wheel limit",
   );
   assert.equal(result.active, false, "Animation must stop after settling");
   assert.equal(
@@ -74,18 +75,14 @@ try {
     distance: sample.y - result.samples[index].y,
     time: sample.t - result.samples[index].t,
   }));
-  const jumps = deltas.filter(
-    (sample) => sample.distance > Math.max(24, sample.time * 1.2),
-  );
+  const jumps = deltas.filter((sample) => sample.distance > 5);
   if (jumps.length) console.log(JSON.stringify({ jumps }));
   assert.ok(
     deltas.every((sample) => sample.distance >= 0),
     "A downward gesture must not jump backward",
   );
   assert.ok(
-    deltas.every(
-      (sample) => sample.distance <= Math.max(24, sample.time * 1.2),
-    ),
+    deltas.every((sample) => sample.distance <= 5),
     "No abrupt per-frame native-scroll jumps",
   );
   assert.ok(
@@ -105,13 +102,35 @@ try {
   await page.mouse.move(600, 300);
   const smallerStep = await page.evaluate(() => scrollY);
   await page.mouse.wheel(0, 40);
-  await page.waitForFunction((start) => scrollY >= start + 21, smallerStep);
-  await page.waitForTimeout(250);
+  await page.waitForFunction((start) => scrollY >= start + 4, smallerStep);
+  await page.waitForTimeout(400);
   assert.ok(
-    Math.abs((await page.evaluate(() => scrollY)) - smallerStep - 22) <= 1,
+    Math.abs((await page.evaluate(() => scrollY)) - smallerStep - 4.8) <= 1,
     "Lower-resolution wheel settings must also use the same easing",
   );
-  console.log("PASS smaller discrete wheel step: continuous 55% travel");
+  const storm = await page.evaluate(async () => {
+    window.dispatchEvent(new PointerEvent("pointerdown"));
+    const start = scrollY;
+    let captured = true;
+    for (let i = 0; i < 100; i++) {
+      const event = new WheelEvent("wheel", {
+        deltaY: 10000,
+        bubbles: true,
+        cancelable: true,
+      });
+      document.body.dispatchEvent(event);
+      captured &&= event.defaultPrevented;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1800));
+    return { distance: scrollY - start, captured };
+  });
+  assert.ok(
+    storm.captured && storm.distance <= 49 && storm.distance > 0,
+    "Even extreme OS wheel multipliers must not skip a section",
+  );
+  console.log(
+    `PASS small wheel step ~5px; extreme 100-packet burst limited to ${storm.distance}px`,
+  );
   await page.close();
 } finally {
   await browser.close();
