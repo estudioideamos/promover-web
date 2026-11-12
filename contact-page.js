@@ -7,6 +7,19 @@ addEventListener(
   { passive: true },
 );
 const form = document.querySelector("form");
+const floatingContact = document.querySelector(".floating-contact");
+const contactFooter = document.querySelector(".footer-editorial");
+if (floatingContact && contactFooter) {
+  const footerObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = !entries[0].isIntersecting;
+      floatingContact.classList.toggle("shown", visible);
+      floatingContact.inert = !visible;
+    },
+    { rootMargin: "0px 0px 80px 0px" },
+  );
+  footerObserver.observe(contactFooter);
+}
 const contactAside = document.querySelector(".contact-page-aside");
 const contactHeader = document.querySelector(".header");
 if (contactAside && contactHeader) {
