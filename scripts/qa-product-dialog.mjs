@@ -84,7 +84,20 @@ try {
           "5491167172341?text=",
         ),
       );
-      if (key === "promociones" || key === "sustentable")
+      const media = await page.locator(".product-visual").evaluate((el) => {
+        const image = el.querySelector("img").getBoundingClientRect();
+        const pager = el.querySelector("nav").getBoundingClientRect();
+        return { imageBottom: image.bottom, pagerTop: pager.top };
+      });
+      assert.ok(
+        media.imageBottom <= media.pagerTop + 1,
+        `${key}: navigation overlaps the photo`,
+      );
+      if (
+        key === "promociones" ||
+        key === "sustentable" ||
+        key === "boligrafos"
+      )
         await page.screenshot({
           path: `qa/product-dialog-${key}-${width}-${height}.png`,
         });

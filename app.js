@@ -86,6 +86,32 @@ const dialog = document.querySelector("#category-dialog");
 let lastCategory;
 const categoryButtons = [...document.querySelectorAll("[data-category]")];
 let categoryIndex = 0;
+const detailMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const detailAnimations = new Map();
+function fadeProduct(element) {
+  detailAnimations.get(element)?.cancel();
+  if (!dialog.open || detailMotion.matches) return;
+  const animation = element.animate([{ opacity: 0.45 }, { opacity: 1 }], {
+    duration: 220,
+    easing: "ease-out",
+  });
+  detailAnimations.set(element, animation);
+  animation.finished
+    .then(() => {
+      if (detailAnimations.get(element) === animation)
+        detailAnimations.delete(element);
+    })
+    .catch(() => {});
+}
+document
+  .querySelector("#dialog-image")
+  .addEventListener("load", (event) => fadeProduct(event.target));
+detailMotion.addEventListener("change", () => {
+  if (detailMotion.matches) {
+    for (const animation of detailAnimations.values()) animation.cancel();
+    detailAnimations.clear();
+  }
+});
 document.querySelectorAll("[data-category]").forEach((button) =>
   button.addEventListener("click", () => {
     lastCategory = button;
@@ -105,6 +131,9 @@ function renderCategory(index, announce = false) {
   document.querySelector("#dialog-description").textContent = c.description;
   const img = document.querySelector("#dialog-image");
   img.src = `assets/${c.image}.webp`;
+  dialog
+    .querySelector(".product-visual")
+    .style.setProperty("--product-scene", `url("assets/${c.image}.webp")`);
   img.alt = `Imagen ilustrativa de ${c.title}`;
   document.querySelector("#dialog-tags").replaceChildren(
     ...c.tags.map((t) => {
@@ -132,10 +161,13 @@ function renderCategory(index, announce = false) {
     dialog
       .querySelector(selector)
       .setAttribute("aria-label", `Producto ${label}: ${adjacent.title}`);
+    dialog.querySelector(`${selector} .pager-preview`).textContent =
+      adjacent.title;
   }
   document.querySelector("#dialog-announcement").textContent = announce
     ? c.title
     : "";
+  if (announce) fadeProduct(dialog.querySelector(".dialog-copy"));
 }
 dialog
   .querySelector("[data-product-previous]")
@@ -166,6 +198,8 @@ dialog.addEventListener("click", (e) => {
   }
 });
 dialog.addEventListener("close", () => {
+  for (const animation of detailAnimations.values()) animation.cancel();
+  detailAnimations.clear();
   document.body.classList.remove("locked");
   lastCategory?.focus({ preventScroll: true });
 });

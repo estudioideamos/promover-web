@@ -43,12 +43,10 @@ try {
       );
       const source = page.locator("#dialog-source");
       assert.equal(await source.isVisible(), [3, 4].includes(index % 7));
-      const layout = await page
-        .locator("#category-dialog")
-        .evaluate((el) => ({
-          overflow: el.scrollHeight - el.clientHeight,
-          x: el.scrollWidth - el.clientWidth,
-        }));
+      const layout = await page.locator("#category-dialog").evaluate((el) => ({
+        overflow: el.scrollHeight - el.clientHeight,
+        x: el.scrollWidth - el.clientWidth,
+      }));
       assert.ok(
         layout.overflow <= 2 && layout.x <= 2,
         `${width} ${title} overflows`,
@@ -58,6 +56,13 @@ try {
         true,
       );
     }
+    assert.equal(
+      await page
+        .locator("#category-dialog")
+        .evaluate((el) => el.getAnimations({ subtree: true }).length),
+      0,
+      "Reduced motion must not animate product changes",
+    );
     await page.locator("[data-product-previous]").click();
     assert.equal(await page.locator("#dialog-title").innerText(), titles[6]);
     await page.keyboard.press("ArrowRight");
