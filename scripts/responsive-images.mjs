@@ -17,7 +17,11 @@ export async function prepareResponsiveImages(pages) {
       ...html.matchAll(/<img\b[^>]*src="assets\/([^"/]+)\.webp"[^>]*>/g),
     ];
     for (const [tag, base] of images) {
-      if (tag.includes('id="dialog-image"')) continue;
+      if (
+        tag.includes('id="dialog-image"') ||
+        tag.includes('id="lightbox-image"')
+      )
+        continue;
       if (base === "ideamos-light") continue;
       if (!prepared.has(base)) {
         const image = sharp(`assets/${base}.webp`),

@@ -28,6 +28,7 @@ const categories = {
     tags: ["Escritura", "Regalos empresarios", "Comunicación"],
   },
   promociones: {
+    gallery: ["assets/cooler-promover.webp", "assets/promociones.webp"],
     title: "Conservadoras y accesorios",
     image: "cooler-promover",
     sourceUrl: "https://www.instagram.com/promover.marketing/p/DesRZU7D8re/",
@@ -36,6 +37,7 @@ const categories = {
     tags: ["Acciones de marca", "Eventos", "Campañas"],
   },
   hogar: {
+    gallery: ["assets/asado-promover.webp", "assets/hogar.webp"],
     title: "Hogar y tiempo libre",
     image: "asado-promover",
     sourceUrl: "https://www.instagram.com/promover.marketing/p/De0FTsCDjHV/",
@@ -168,6 +170,14 @@ function renderCategory(index, announce = false) {
     ? c.title
     : "";
   if (announce) fadeProduct(dialog.querySelector(".dialog-copy"));
+  dialog.dispatchEvent(
+    new CustomEvent("productchange", {
+      detail: {
+        title: c.title,
+        photos: c.gallery || [`assets/${c.image}.webp`],
+      },
+    }),
+  );
 }
 dialog
   .querySelector("[data-product-previous]")

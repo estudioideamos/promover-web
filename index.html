@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="mobile-navigation.css" />
     <script src="mobile-navigation.js" defer></script>
     <link rel="stylesheet" href="product-dialog.css" />
+    <link rel="stylesheet" href="editorial-interactions.css" />
+    <script src="editorial-interactions.js" defer></script>
     <link
       rel="canonical"
       href="https://estudioideamos.github.io/promover-web/"
@@ -1480,6 +1482,15 @@
           </svg>
         </button>
         <div class="product-visual">
+          <button
+            type="button"
+            class="product-expand"
+            aria-label="Ampliar fotos de esta línea"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4" /></svg
+            ><span>Ampliar</span>
+          </button>
           <img
             decoding="async"
             id="dialog-image"
@@ -1575,6 +1586,43 @@
                 <path d="M6 18 18 6M6 6h12v12" /></svg></span
           ></a>
         </div>
+      </div>
+    </dialog>
+    <dialog id="product-lightbox" aria-labelledby="lightbox-title">
+      <div class="lightbox-heading">
+        <h2 id="lightbox-title">Vista ampliada</h2>
+        <button
+          type="button"
+          class="lightbox-close"
+          aria-label="Cerrar vista ampliada"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M6 18 18 6" />
+          </svg>
+        </button>
+      </div>
+      <img
+        id="lightbox-image"
+        src="assets/objetos.webp"
+        loading="lazy"
+        alt=""
+        width="1200"
+        height="805"
+        decoding="async"
+      />
+      <div class="lightbox-bottom">
+        <p id="lightbox-caption" role="status" aria-live="polite"></p>
+        <nav aria-label="Fotos de esta línea">
+          <button type="button" data-photo-previous aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 12H5m6-6-6 6 6 6" /></svg
+            >Anterior</button
+          ><button type="button" data-photo-next aria-label="Foto siguiente">
+            Siguiente<svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </nav>
       </div>
     </dialog>
   </body>

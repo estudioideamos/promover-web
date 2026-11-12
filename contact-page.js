@@ -41,6 +41,7 @@ if (form) {
   const button = form.querySelector("button"),
     status = document.querySelector("#form-status");
   let submitting = false;
+  let sendTimer, recoveryTimer;
   const lastSubmission = () => {
     try {
       return Number(sessionStorage.getItem("promover-submitted-at")) || 0;
@@ -49,33 +50,50 @@ if (form) {
     }
   };
   form.addEventListener("submit", (event) => {
+    event.preventDefault();
     if (form.elements._honey.value.trim()) {
-      event.preventDefault();
       status.textContent =
         "No pudimos procesar la consulta. Probá nuevamente o escribinos por WhatsApp.";
       return;
     }
     if (submitting || Date.now() - lastSubmission() < 30000) {
-      event.preventDefault();
       status.textContent =
         "Tu consulta se está procesando. Esperá unos segundos antes de volver a enviar.";
       return;
     }
     submitting = true;
     button.disabled = true;
-    status.textContent = "Abriendo el envío seguro…";
+    form.setAttribute("aria-busy", "true");
+    form.classList.add("is-sending");
+    status.textContent = "Preparando tu consulta para el envío seguro…";
     try {
       sessionStorage.setItem("promover-submitted-at", String(Date.now()));
     } catch {}
-    setTimeout(() => {
+    sendTimer = setTimeout(
+      () => HTMLFormElement.prototype.submit.call(form),
+      matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 600,
+    );
+    recoveryTimer = setTimeout(() => {
       button.disabled = false;
       submitting = false;
+      form.removeAttribute("aria-busy");
+      form.classList.remove("is-sending");
+      status.textContent =
+        "El envío está tardando. Podés volver a intentar o escribirnos por WhatsApp.";
     }, 12000);
   });
   addEventListener("pageshow", () => {
+    clearTimeout(sendTimer);
+    clearTimeout(recoveryTimer);
     button.disabled = false;
     submitting = false;
+    form.removeAttribute("aria-busy");
+    form.classList.remove("is-sending");
     status.textContent = "";
+  });
+  addEventListener("pagehide", () => {
+    clearTimeout(sendTimer);
+    clearTimeout(recoveryTimer);
   });
 }
 document.querySelector("#year").textContent = new Date().getFullYear();
