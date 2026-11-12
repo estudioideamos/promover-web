@@ -166,10 +166,24 @@ const visibility = new Map([
   ["footer", false],
   ["universo", false],
 ]);
+const contactSection = document.querySelector("#contacto");
+function syncContactBackground() {
+  contactSection.classList.toggle(
+    "background-active",
+    Boolean(
+      visibility.get("contacto") &&
+      !document.hidden &&
+      !navigator.connection?.saveData,
+    ),
+  );
+}
+document.addEventListener("visibilitychange", syncContactBackground);
+navigator.connection?.addEventListener("change", syncContactBackground);
 const contactObserver = new IntersectionObserver(
   (entries) => {
     for (const entry of entries)
       visibility.set(entry.target.id || "footer", entry.isIntersecting);
+    syncContactBackground();
     const show =
       !visibility.get("inicio") &&
       !visibility.get("contacto") &&

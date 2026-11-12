@@ -161,6 +161,7 @@
       }
     </script>
     <link rel="stylesheet" href="studio-details.css" />
+    <link rel="stylesheet" href="contact-premium.css" />
   </head>
   <body>
     <a class="skip" href="#contenido">Ir al contenido</a>
@@ -237,72 +238,118 @@
       </button>
     </header>
     <main id="contenido" class="contact-page">
-      <section class="contact-page-intro">
-        <p class="eyebrow">
-          <span class="status-dot"></span> Una buena idea empieza con una
-          conversación
-        </p>
+      <section class="contact-page-intro" aria-label="Contacto con Promover">
+        <p class="eyebrow">Conversemos</p>
         <h1>Hagamos<br /><em>algo propio.</em></h1>
+        <img
+          class="contact-page-watermark"
+          src="assets/brand-symbol.svg"
+          alt=""
+          aria-hidden="true"
+          width="320"
+          height="210"
+          decoding="async"
+        />
         <div class="contact-page-summary">
-          <p>Tu marca tiene algo para contar.<br />Le damos forma, juntos.</p>
-          <img
-            decoding="async"
-            src="assets/organic.svg"
-            alt=""
-            aria-hidden="true"
-          />
+          <p>
+            Una consulta o tu próximo proyecto.<br />Estamos para escucharte.
+          </p>
+          <a class="contact-hero-link" href="#formulario"
+            >Dejanos tu mensaje
+            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 18 18 6M6 6h12v12" /></svg
+          ></a>
         </div>
       </section>
       <section class="contact-page-grid" aria-label="Contactá a Promover">
         <aside class="contact-page-aside">
-          <span class="eyebrow">De tu idea a tus manos</span>
-          <h2>Contanos qué<br />tenés en mente.</h2>
+          <span class="eyebrow">Contacto directo</span>
+          <h2>Estamos para<br />escucharte.</h2>
           <p>
-            Un producto, una campaña o una idea que todavía está tomando forma.
-            Empecemos por ahí.
+            Una consulta puntual o una idea que recién empieza. Elegí cómo
+            querés conversar con nosotros.
           </p>
-          <a
-            class="contact-direct"
-            href="https://wa.me/5491167172341"
-            target="_blank"
-            rel="noopener"
-            ><img
-              decoding="async"
-              src="assets/whatsapp.svg"
-              alt=""
-              width="24"
-              height="24" />11 6717-2341
-            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 18 18 6M6 6h12v12" /></svg></a
-          ><small>WhatsApp y llamadas · De 9 a 18 h.</small
-          ><a class="contact-email" href="mailto:info@promovermarketing.com.ar"
-            >info@promovermarketing.com.ar
-            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 18 18 6M6 6h12v12" /></svg
-          ></a>
-          <p class="contact-location">
-            Sarandí, Avellaneda.<br />Buenos Aires, Argentina.<small
-              >Sin local de atención al público.</small
+          <div class="contact-channels">
+            <a
+              class="contact-direct contact-channel-card"
+              href="https://wa.me/5491167172341"
+              target="_blank"
+              rel="noopener"
             >
-          </p>
-          <a
-            class="contact-instagram"
-            href="https://www.instagram.com/promover.marketing/"
-            target="_blank"
-            rel="noopener"
-            ><img
-              decoding="async"
-              src="assets/instagram.svg"
-              width="20"
-              height="20"
-              alt="" />Seguinos en Instagram
-            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 18 18 6M6 6h12v12" /></svg
-          ></a>
+              <span class="contact-channel-icon"
+                ><img
+                  src="assets/whatsapp.svg"
+                  alt=""
+                  width="24"
+                  height="24"
+                  decoding="async"
+              /></span>
+              <span class="contact-channel-copy"
+                ><span>WhatsApp y llamadas</span
+                ><strong>11 6717-2341</strong></span
+              ><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 18 18 6M6 6h12v12" />
+              </svg>
+            </a>
+            <a
+              class="contact-email contact-channel-card"
+              href="mailto:info@promovermarketing.com.ar"
+            >
+              <span class="contact-channel-icon"
+                ><svg viewBox="0 0 32 32" aria-hidden="true">
+                  <rect x="5" y="8" width="22" height="17" rx="3" />
+                  <path d="m6 10 10 8 10-8M6 23l6-6m14 6-6-6" />
+                  <path class="contact-icon-accent" d="M24 5h3m1 2V4" /></svg
+              ></span>
+              <span class="contact-channel-copy"
+                ><span>Email</span
+                ><strong>info@<wbr />promovermarketing.com.ar</strong></span
+              ><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 18 18 6M6 6h12v12" />
+              </svg>
+            </a>
+            <a
+              class="contact-instagram contact-channel-card"
+              href="https://www.instagram.com/promover.marketing/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="contact-channel-icon"
+                ><img
+                  src="assets/instagram.svg"
+                  alt=""
+                  width="24"
+                  height="24"
+                  decoding="async"
+              /></span>
+              <span class="contact-channel-copy"
+                ><span>Instagram</span
+                ><strong>@promover.marketing</strong></span
+              ><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 18 18 6M6 6h12v12" />
+              </svg>
+            </a>
+          </div>
+          <div class="contact-location">
+            <span class="contact-location-icon"
+              ><svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M25 13c0 7-9 15-9 15S7 20 7 13a9 9 0 1 1 18 0Z" />
+                <circle cx="16" cy="13" r="3" />
+                <path class="contact-icon-accent" d="M10 29h12" /></svg
+            ></span>
+            <p>
+              Sarandí, Avellaneda.<br />Buenos Aires, Argentina.<small
+                >Sin local de atención al público.</small
+              >
+            </p>
+          </div>
         </aside>
-        <div class="contact-form-panel" id="formulario">
-          <p class="eyebrow">El primer paso es tuyo</p>
-          <h2>Hablemos de tu proyecto.</h2>
+        <div class="contact-form-panel" id="formulario" tabindex="-1">
+          <p class="eyebrow">Tu consulta</p>
+          <h2>Escribinos.</h2>
+          <p class="contact-form-intro">
+            Contanos tu idea o hacenos una consulta.
+          </p>
           <p class="required-note">Los campos con * son obligatorios.</p>
           <form
             action="https://formsubmit.co/info@promovermarketing.com.ar"
@@ -364,25 +411,26 @@
               /></label>
             </div>
             <label
-              >¿Qué querés desarrollar?<select name="categoria">
-                <option value="">Elegí una categoría</option>
+              >¿Sobre qué querés consultarnos?<select name="categoria">
+                <option value="">Elegí un tema (opcional)</option>
+                <option>Consulta general</option>
                 <option>Textil</option>
                 <option>Marroquinería</option>
                 <option>Bolígrafos</option>
-                <option>Promociones</option>
+                <option>Conservadoras y accesorios</option>
                 <option>Hogar y tiempo libre</option>
                 <option>Sustentable</option>
                 <option>Desarrollo especial</option>
                 <option>Quiero asesoramiento</option>
               </select></label
             ><label
-              >Contanos tu idea *<textarea
+              >Tu mensaje *<textarea
                 name="mensaje"
                 required
                 minlength="10"
                 maxlength="5000"
                 rows="5"
-                placeholder="Qué necesitás, para cuándo y qué cantidad estimás. No hace falta tener todo definido."
+                placeholder="Contanos qué necesitás. Si es un proyecto, podés incluir cantidades y una fecha estimada."
               ></textarea></label
             ><label class="form-consent"
               ><input
@@ -394,8 +442,8 @@
                 >Autorizo a Promover a usar estos datos para responder mi
                 consulta. *</span
               ></label
-            ><button type="submit" class="button dark">
-              Enviar mi consulta
+            ><button type="submit" class="button orange">
+              Enviar mensaje
               <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 18 18 6M6 6h12v12" />
               </svg>
@@ -473,7 +521,7 @@
                 focusable="false"
               >
                 <path d="M6 18 18 6M6 6h12v12" /></svg></span></a
-          ><small>WhatsApp y llamadas · De 9 a 18 h</small
+          ><small>WhatsApp y llamadas</small
           ><a class="footer-form-link" href="contacto.html"
             >Contanos tu proyecto
             <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">

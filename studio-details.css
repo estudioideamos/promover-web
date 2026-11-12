@@ -636,7 +636,7 @@ select {
   .contact .contact-action-block {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "copy" "primary" "hours" "secondary";
+    grid-template-areas: "copy" "primary" "secondary";
     gap: 12px;
     align-items: stretch;
   }
@@ -673,15 +673,6 @@ select {
   .contact .contact-action-block > .button .arrow-icon {
     width: 21px;
     height: 21px;
-  }
-  .contact .contact-hours {
-    grid-area: hours;
-    margin: -3px 0 3px;
-    justify-self: center;
-    text-align: center;
-    line-height: 1.7;
-    color: #363c2e;
-    font-size: 13px !important;
   }
   .contact .contact-action-block > .contact-form-link {
     grid-area: secondary;
@@ -739,7 +730,7 @@ select {
   .contact .contact-action-block {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(290px, 360px) auto;
-    grid-template-areas: "copy primary secondary" "copy hours secondary";
+    grid-template-areas: "copy primary secondary";
     column-gap: 32px;
     row-gap: 9px;
     align-items: center;
@@ -776,23 +767,12 @@ select {
   .contact .contact-action-block > .button:hover {
     background: #f99653;
   }
-  .contact .contact-action-block > .contact-hours {
-    grid-area: hours;
-    justify-self: start;
-    margin: 0;
-    font-size: 13px !important;
-    line-height: 1.6;
-    color: #c6cfb9;
-  }
-  .contact .contact-hours .status-dot {
-    background: var(--orange);
-  }
   .contact .contact-action-block > .contact-form-link {
     grid-area: secondary;
     justify-self: stretch;
     align-self: center;
     min-width: 0;
-    min-height: 52px;
+    min-height: 58px;
     margin: 0;
     padding: 13px 17px;
     gap: 19px;
@@ -815,16 +795,83 @@ select {
     display: none;
   }
   .contact .contact-action-block {
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 1.2fr);
-    grid-template-areas: "copy primary" "secondary hours";
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-areas: "copy copy" "primary secondary";
     gap: 18px 28px;
     padding: 26px 28px;
   }
   .contact .contact-action-block > .contact-form-link {
-    justify-self: start;
+    justify-self: stretch;
+  }
+}
+/* The original monogram carries the motion; text and actions remain still. */
+.contact:before {
+  background: linear-gradient(
+    110deg,
+    #242621 8%,
+    #242621 34%,
+    #fff2db 49%,
+    #242621 65%,
+    #242621 92%
+  );
+  background-size: 260% 100%;
+  background-position: 0% 50%;
+  mask: url("assets/brand-symbol.svg") center/contain no-repeat;
+  transform-origin: center;
+  animation: none;
+}
+.contact.background-active:before {
+  animation:
+    contact-mark-float 10s ease-in-out infinite,
+    contact-mark-light 16s ease-in-out infinite;
+  will-change: transform;
+}
+.menu-open .contact.background-active:before {
+  animation-play-state: paused;
+}
+@media (max-width: 760px) {
+  .contact:before {
+    display: block;
+    width: clamp(64px, 20vw, 88px);
+    height: clamp(46px, 14vw, 56px);
+    top: 28px;
+    right: 6%;
+    left: auto;
+    border: 0;
+    border-radius: 0;
+    opacity: 0.09;
+    transform: none;
+  }
+}
+@keyframes contact-mark-float {
+  0%,
+  50%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+  25% {
+    transform: translate3d(-2px, -8px, 0) rotate(-1.5deg);
+  }
+  75% {
+    transform: translate3d(2px, 8px, 0) rotate(1.5deg);
+  }
+}
+@keyframes contact-mark-light {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .contact.background-active:before {
+    animation: none;
+    transform: none;
+    background-position: 50% 50%;
+    will-change: auto;
+  }
   .section-heading.visible,
   .category.visible,
   .manufacture-copy.visible,
