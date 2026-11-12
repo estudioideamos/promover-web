@@ -62,7 +62,7 @@ try {
   );
   assert.ok(
     result.end > result.initial &&
-      result.end - result.initial <= (600 + 61.5) * 0.12 + 2,
+      result.end - result.initial <= (600 + 61.5) * 0.16 + 2,
     "Burst travel must stay within the much slower wheel limit",
   );
   assert.equal(result.active, false, "Animation must stop after settling");
@@ -75,14 +75,14 @@ try {
     distance: sample.y - result.samples[index].y,
     time: sample.t - result.samples[index].t,
   }));
-  const jumps = deltas.filter((sample) => sample.distance > 5);
+  const jumps = deltas.filter((sample) => sample.distance > 7);
   if (jumps.length) console.log(JSON.stringify({ jumps }));
   assert.ok(
     deltas.every((sample) => sample.distance >= 0),
     "A downward gesture must not jump backward",
   );
   assert.ok(
-    deltas.every((sample) => sample.distance <= 5),
+    deltas.every((sample) => sample.distance <= 7),
     "No abrupt per-frame native-scroll jumps",
   );
   assert.ok(
@@ -102,10 +102,10 @@ try {
   await page.mouse.move(600, 300);
   const smallerStep = await page.evaluate(() => scrollY);
   await page.mouse.wheel(0, 40);
-  await page.waitForFunction((start) => scrollY >= start + 4, smallerStep);
+  await page.waitForFunction((start) => scrollY >= start + 6, smallerStep);
   await page.waitForTimeout(400);
   assert.ok(
-    Math.abs((await page.evaluate(() => scrollY)) - smallerStep - 4.8) <= 1,
+    Math.abs((await page.evaluate(() => scrollY)) - smallerStep - 6.4) <= 1,
     "Lower-resolution wheel settings must also use the same easing",
   );
   const storm = await page.evaluate(async () => {
@@ -125,11 +125,11 @@ try {
     return { distance: scrollY - start, captured };
   });
   assert.ok(
-    storm.captured && storm.distance <= 49 && storm.distance > 0,
+    storm.captured && storm.distance <= 65 && storm.distance > 0,
     "Even extreme OS wheel multipliers must not skip a section",
   );
   console.log(
-    `PASS small wheel step ~5px; extreme 100-packet burst limited to ${storm.distance}px`,
+    `PASS small wheel step ~6px; extreme 100-packet burst limited to ${storm.distance}px`,
   );
   await page.close();
 } finally {

@@ -33,14 +33,14 @@
     const momentum = velocity + frequency * displacement;
     const decay = Math.exp(-frequency * elapsed);
     const springPosition = target + (displacement + momentum * elapsed) * decay;
-    const maxStep = 240 * elapsed;
+    const maxStep = 320 * elapsed;
     const nextPosition =
       position +
       Math.max(-maxStep, Math.min(maxStep, springPosition - position));
     position = clamp(nextPosition);
     velocity = Math.max(
-      -240,
-      Math.min(240, (velocity - frequency * momentum * elapsed) * decay),
+      -320,
+      Math.min(320, (velocity - frequency * momentum * elapsed) * decay),
     );
     if (position !== nextPosition) velocity = 0;
     const finished =
@@ -103,16 +103,16 @@
       const unit =
         event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
       const distance =
-        Math.max(-100, Math.min(100, event.deltaY * unit)) * 0.12;
+        Math.max(-100, Math.min(100, event.deltaY * unit)) * 0.16;
       if (reduced.matches) {
         cancel();
         event.preventDefault();
         scrollTo({ top: clamp(scrollY + distance), behavior: "instant" });
         return;
       }
-      // A rapid burst can never queue more than 48px ahead of the current view.
+      // A rapid burst can never queue more than 64px ahead of the current view.
       const next = clamp(
-        Math.max(position - 48, Math.min(position + 48, target + distance)),
+        Math.max(position - 64, Math.min(position + 64, target + distance)),
       );
       if (next === target) {
         if (frame) event.preventDefault();
