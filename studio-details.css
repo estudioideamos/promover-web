@@ -9,6 +9,10 @@
 picture {
   display: contents;
 }
+html.wheel-active {
+  overflow-anchor: none;
+  scroll-behavior: auto;
+}
 .logo-track:not(.loop-ready) {
   animation: none !important;
 }

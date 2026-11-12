@@ -39,6 +39,7 @@ try {
       "Wheel travel must ease over frames",
     );
     const native = await page.evaluate(() => {
+      window.dispatchEvent(new PointerEvent("pointerdown"));
       const result = [];
       for (const init of [
         { deltaY: 6.5 },
